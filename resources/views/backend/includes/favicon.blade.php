@@ -1,2 +1,2 @@
 <!--favicon-->
-<link rel="icon" href="{{asset('backend_assets')}}/images/favicon-32x32.png" type="image/png" />
+<link rel="icon" href="{{asset('backend_assets')}}/images/logos/favicon.png" type="image/png" />
