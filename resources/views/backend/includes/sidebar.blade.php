@@ -9,7 +9,7 @@
             <img src="{{asset('backend_assets')}}/images/logos/favicon.png" class="logo-icon" alt="logo icon">
         </div>
         <div>
-            <h4 class="logo-text">Immo Hunter</h4>
+            <h4 class="logo-text">ImmoHunter</h4>
         </div>
         <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
         </div>
@@ -42,7 +42,7 @@
                 <a  href="{{route('admin-vendor-list')}}" style="cursor: pointer">
                     <div class="parent-icon"><i class='lni lni-world'></i>
                     </div>
-                    <div class="menu-title">Vendors</div>
+                    <div class="menu-title">Employees</div>
                 </a>
 
             </li>

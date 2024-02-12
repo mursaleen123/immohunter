@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class BrandController extends Controller
 {
     use ImageHandlerTrait;
-
+    
     /**
      * @param BrandRequest $request
      */
