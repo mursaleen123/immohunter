@@ -6,7 +6,7 @@
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
         <div>
-            <img src="{{asset('backend_assets')}}/images/logos/favicon.png" class="logo-icon" alt="logo icon">
+            <img src="{{ asset('backend_assets') }}/images/logos/favicon.png" class="logo-icon" alt="logo icon">
         </div>
         <div>
             <h4 class="logo-text">ImmoHunter</h4>
@@ -18,16 +18,17 @@
     <ul class="metismenu" id="menu">
         <li class="menu-label">User</li>
         <li>
-            <a href="{{route( $role . '-profile')}}" aria-expanded="false">
+            <a href="{{ route($role . '-profile') }}" aria-expanded="false">
                 <div class="parent-icon"><i class="bx bx-user-circle"></i>
                 </div>
                 <div class="menu-title">Profile</div>
             </a>
         </li>
         <li>
-            <form action="{{route('logout')}}" method="POST">
+            <form action="{{ route('logout') }}" method="POST">
                 @csrf
-                <a href="{{route('logout')}}" aria-expanded="false" onclick="event.preventDefault(); this.closest
+                <a href="{{ route('logout') }}" aria-expanded="false"
+                    onclick="event.preventDefault(); this.closest
                 ('form').submit();">
                     <div class="parent-icon"><i class="bx bx-log-out-circle"></i>
                     </div>
@@ -37,19 +38,39 @@
 
         </li>
         <li class="menu-label"></li>
-        @if($role === 'admin')
+        @if ($role === 'admin')
             <li>
-                <a  href="{{route('admin-vendor-list')}}" style="cursor: pointer">
-                    <div class="parent-icon"><i class='lni lni-world'></i>
+                <a class="has-arrow" style="cursor: pointer">
+                    <div class="parent-icon"><i class='lni lni-checkmark-circle'></i>
                     </div>
                     <div class="menu-title">Employees</div>
                 </a>
+                <ul>
+                    <li> <a href="{{ route('admin-vendor-list') }}"><i class='lni lni-world'></i>Show All</a>
+                    </li>
+                    <li> <a href="{{ route('brand-add') }}"><i class="bx bx-right-arrow-alt"></i>Add Employee</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="has-arrow" style="cursor: pointer">
+                    <div class="parent-icon"><i class='lni lni-checkmark-circle'></i>
+                    </div>
+                    <div class="menu-title">Properties</div>
+                </a>
+                <ul>
+                    <li> <a href="{{ route('admin-vendor-list') }}"><i class='lni lni-world'></i>Show All</a>
+                    </li>
+                    <li> <a href="{{ route('brand-add') }}"><i class="bx bx-right-arrow-alt"></i>Add Property</a>
+                    </li>
+                </ul>
 
             </li>
         @endif
 
-        @if($status)
-            <li>
+
+        @if ($status)
+            {{-- <li>
                 <a class="has-arrow" style="cursor: pointer">
                     <div class="parent-icon"><i class='lni lni-checkmark-circle'></i>
                     </div>
@@ -117,7 +138,7 @@
                             Coupon</a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
         @endif
 
     </ul>

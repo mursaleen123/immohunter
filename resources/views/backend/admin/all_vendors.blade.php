@@ -1,16 +1,16 @@
 @php use App\MyHelpers;use Illuminate\Support\Facades\Auth; @endphp
 @extends('backend.layouts.app')
-@section('PageTitle', 'Vendors')
+@section('PageTitle', 'Employees')
 @section('content')
     <!--breadcrumb -->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">Vendor</div>
+        <div class="breadcrumb-title pe-3">Employee</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="dashboard"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Vendor List</li>
+                    <li class="breadcrumb-item active" aria-current="page">Employee List</li>
                 </ol>
             </nav>
         </div>
@@ -58,7 +58,7 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Vendor Details</h5>
+                                                <h5 class="modal-title">Employee Details</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                             </div>
@@ -107,7 +107,7 @@
                                 <form method="POST" action="{{route('admin-activate-vendor')}}"
                                       class="active-deactive-form">
                                     @csrf
-                                    <input name="vendor_id" value="{{$item->id}}" hidden/>
+                                    <input name="Employee_id" value="{{$item->id}}" hidden/>
                                     <input name="current_status" value="{{$item->status}}" hidden/>
                                     <div class="form-check form-switch">
                                         @if($item->status)
