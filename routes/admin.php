@@ -11,22 +11,31 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
+
 Route::middleware(['auth', 'auth.role:admin'])
     ->prefix('admin')
     ->name('admin-')
-    ->controller(AdminController::class)->group(function (){
+    ->controller(AdminController::class)->group(function () {
 
-    // vendors
-    Route::view('vendors', 'backend.admin.all_vendors',
-    ['data' => User::where('role', '=', 'vendor')->get()]
-    )->name('vendor-list');
+        // vendors
+        Route::view(
+            'vendors',
+            'backend.admin.all_vendors',
+            ['data' => User::where('role', '=', 'vendor')->get()]
+        )->name('vendor-list');
 
-    Route::post('activate_vendor', 'vendorActivate')->name('activate-vendor');
-    Route::post('remove_vendor', 'userRemove')->name('vendor-remove');
+        Route::get('/create/vendor', function () {
+            return view('backend.admin.admin_add');
+        })->name('create-vendor');
+
+        Route::post('/add/vendor', [AdminController::class, 'storeVendor'])->name('save-vendor');
+
+        Route::post('activate_vendor', 'vendorActivate')->name('activate-vendor');
+        Route::post('remove_vendor', 'userRemove')->name('vendor-remove');
 
 
-    // fallback
-    Route::fallback(function (){
-        return redirect('/admin/dashboard');
-    })->name('brand-fallback');
-});
+        // fallback
+        Route::fallback(function () {
+            return redirect('/admin/dashboard');
+        })->name('brand-fallback');
+    });

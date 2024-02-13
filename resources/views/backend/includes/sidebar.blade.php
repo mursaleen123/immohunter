@@ -48,11 +48,11 @@
                 <ul>
                     <li> <a href="{{ route('admin-vendor-list') }}"><i class='lni lni-world'></i>Show All</a>
                     </li>
-                    <li> <a href="{{ route('brand-add') }}"><i class="bx bx-right-arrow-alt"></i>Add Employee</a>
+                    <li> <a href="{{ route('admin-create-vendor') }}"><i class="bx bx-right-arrow-alt"></i>Add Employee</a>
                     </li>
                 </ul>
             </li>
-            <li>
+            {{-- <li>
                 <a class="has-arrow" style="cursor: pointer">
                     <div class="parent-icon"><i class='lni lni-checkmark-circle'></i>
                     </div>
@@ -61,11 +61,11 @@
                 <ul>
                     <li> <a href="{{ route('admin-vendor-list') }}"><i class='lni lni-world'></i>Show All</a>
                     </li>
-                    <li> <a href="{{ route('brand-add') }}"><i class="bx bx-right-arrow-alt"></i>Add Property</a>
+                    <li> <a href="{{ route('admin-vendor-list') }}"><i class="bx bx-right-arrow-alt"></i>Add Property</a>
                     </li>
                 </ul>
 
-            </li>
+            </li> --}}
         @endif
 
 

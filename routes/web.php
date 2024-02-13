@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,8 @@ Route::get('/', function () {
 Route::fallback(function (){
     return redirect()->route('login');
 });
+
+Route::get('/save-password', [AdminController::class, 'savePassword'])->name('savePassword');
 
 
 require_once __DIR__.'/auth.php';
