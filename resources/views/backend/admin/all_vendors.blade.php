@@ -107,7 +107,7 @@
                                 <form method="POST" action="{{route('admin-activate-vendor')}}"
                                       class="active-deactive-form">
                                     @csrf
-                                    <input name="Employee_id" value="{{$item->id}}" hidden/>
+                                    <input name="vendor_id" value="{{$item->id}}" hidden/>
                                     <input name="current_status" value="{{$item->status}}" hidden/>
                                     <div class="form-check form-switch">
                                         @if($item->status)

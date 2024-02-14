@@ -53,7 +53,6 @@ class AdminController extends UserController
     public function vendorActivate(Request $request)
     {
         $vendor_id = $request->vendor_id;
-
         // check whether activate or de-activate
         if ($request->current_status == "1") {
             return $this->vendorDeActivate($vendor_id);
@@ -66,7 +65,7 @@ class AdminController extends UserController
             // notify the vendor
             Notification::send($vendor, new VendorActivated());
 
-            return response(['msg' => 'Vendor now is activated.'], 200);
+            return response(['msg' => 'Employe now is activated.'], 200);
         } catch (ModelNotFoundException $exception) {
             return redirect()->route('admin-vendor-list')->with('error', 'Failed to activate this vendor, try again');
         }
@@ -76,9 +75,9 @@ class AdminController extends UserController
 
         try {
             User::findOrFail($vendor_id)->update(['status' => 0]);
-            return response(['msg' => 'Vendor now is disabled.'], 200);
+            return response(['msg' => 'Employe now is disabled.'], 200);
         } catch (ModelNotFoundException $exception) {
-            return redirect()->route('admin-vendor-list')->with('error', 'Failed to activate this vendor, try again');
+            return redirect()->route('admin-vendor-list')->with('error', 'Failed to activate this Employe, try again');
         }
     }
 
@@ -99,6 +98,8 @@ class AdminController extends UserController
         ]);
 
         Mail::to($request->email)->send(new SetPasswordEmail($request->email));
+        return redirect()->back()->with('success', 'Email Send Successfully');
+
     }
     public function savePassword(Request $request)
     {
