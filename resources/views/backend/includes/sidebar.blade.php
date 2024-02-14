@@ -48,25 +48,29 @@
                 <ul>
                     <li> <a href="{{ route('admin-vendor-list') }}"><i class='lni lni-world'></i>Show All</a>
                     </li>
-                    <li> <a href="{{ route('admin-create-vendor') }}"><i class="bx bx-right-arrow-alt"></i>Add Employee</a>
+                    <li> <a href="{{ route('admin-create-vendor') }}"><i class="bx bx-right-arrow-alt"></i>Add
+                            Employee</a>
                     </li>
                 </ul>
             </li>
-            {{-- <li>
-                <a class="has-arrow" style="cursor: pointer">
-                    <div class="parent-icon"><i class='lni lni-checkmark-circle'></i>
-                    </div>
-                    <div class="menu-title">Properties</div>
-                </a>
-                <ul>
-                    <li> <a href="{{ route('admin-vendor-list') }}"><i class='lni lni-world'></i>Show All</a>
-                    </li>
-                    <li> <a href="{{ route('admin-vendor-list') }}"><i class="bx bx-right-arrow-alt"></i>Add Property</a>
-                    </li>
-                </ul>
-
-            </li> --}}
         @endif
+
+        <li>
+            <a class="has-arrow" style="cursor: pointer">
+                <div class="parent-icon"><i class='lni lni-home'></i>
+                </div>
+                <div class="menu-title">Properties</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('property') }}"><i class='lni lni-world'></i>Show All</a>
+                </li>
+                @if ($role === 'admin')
+                    <li> <a href="{{ route('property-add') }}"><i class="bx bx-right-arrow-alt"></i>Add Property</a>
+                    </li>
+                @endif
+            </ul>
+
+        </li>
 
 
         @if ($status)
