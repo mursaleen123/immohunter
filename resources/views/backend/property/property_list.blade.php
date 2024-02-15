@@ -34,6 +34,7 @@
                 <table id="data_table" class="table table-striped table-bordered">
                     <thead>
                         <tr>
+                            <th>Property ID</th>
                             <th>Title</th>
                             <th>Location</th>
                             <th>Price</th>
@@ -47,6 +48,7 @@
                     <tbody>
                         @foreach ($data as $item)
                             <tr>
+                                <td>{{ $item->id }}</td>
                                 <td>{{ $item->title }}</td>
                                 <td>{{ $item->location }}</td>
                                 {{--     <td>
