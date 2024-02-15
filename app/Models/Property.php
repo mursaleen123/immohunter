@@ -12,6 +12,6 @@ class Property extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'location', 'price', 'description', 'status'
+        'title', 'location', 'price', 'description', 'status','property_link'
     ];
 }

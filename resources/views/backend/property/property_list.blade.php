@@ -39,6 +39,7 @@
                             <th>Price</th>
                             <th>Description</th>
                             <th>Status</th>
+                            <th>Property URL</th>
                             <th>Assigned Employe</th>
                             <th>Actions</th>
                         </tr>
@@ -88,11 +89,15 @@
                                 <td>{{ $item->price }}</td>
                                 <td>{{ $item->description }}</td>
                                 <td>{{ $item->status }}</td>
-                                @php
+                                <td title="{{ $item->property_link }}">
+                                    <a href="{{ $item->property_link }}" target="_blank">
+                                        {{ \Illuminate\Support\Str::limit($item->property_link, 20) }}
+                                    </a>
+                                </td> @php
                                     $user = DB::table('users')
                                         ->where('id', $item->user_id)
                                         ->first();
-                             @endphp
+                                @endphp
 
 
                                 <td> {{ $user->name }}

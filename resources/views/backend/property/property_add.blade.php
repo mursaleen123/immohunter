@@ -67,7 +67,15 @@
                         <small style="color: #e20000" class="error" id="description-error"></small>
                     </div>
                 </div>
-
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Property Link</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <input name="property_link" type="text" class="form-control" required />
+                        <small style="color: #e20000" class="error" id="property_link-error"></small>
+                    </div>
+                </div>
                 <div class="row mb-3">
                     <div class="col-sm-3">
                         <h6 class="mb-0">Status</h6>
