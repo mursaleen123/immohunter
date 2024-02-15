@@ -84,22 +84,22 @@ class AdminController extends UserController
     public function storeVendor(Request $request)
     {
 
-        //         array:3 [▼ // app\Http\Controllers\User\AdminController.php:79
-        //   "_token" => "m8J7SRdslp2vLuB4PA8pIhdmnSLtKzJ8kgvpOnU3"
-        //   "name" => "Damian Perez"
-        //   "email" => "cocapuvil@mailinator.com"
-        // ]
+        try {
+            // Insert user data into the users table
+            $users = DB::table('users')->insert([
+                'name' => $request->name,
+                'email' => $request->email,
+                'role' => 'vendor',
+            ]);
 
-        // Insert user data into the users table
-        $users = DB::table('users')->insert([
-            'name' => $request->name,
-            'email' => $request->email,
-            'role' => 'vendor',
-        ]);
+            // Send email to the vendor
+            Mail::to($request->email)->send(new SetPasswordEmail($request->email));
 
-        Mail::to($request->email)->send(new SetPasswordEmail($request->email));
-        return redirect()->back()->with('success', 'Email Send Successfully');
-
+            return redirect()->back()->with('success', 'Email Sent Successfully');
+        } catch (\Exception $e) {
+            // Handle any exceptions that occur
+            dd($e->getMessage()); // Dump and die to see the error message
+        }
     }
     public function savePassword(Request $request)
     {
@@ -113,9 +113,7 @@ class AdminController extends UserController
             DB::table('users')->where('email', $request->email)->update([
                 'username' => $request->username
             ]);
-
         }
         return response()->json(['message' => 'Please contact admin to activate your profile'], 403);
-
     }
 }
