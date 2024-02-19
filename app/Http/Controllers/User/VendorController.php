@@ -14,7 +14,8 @@ class VendorController extends UserController
      * To handle the request of updating info of a vendor
      * @param VendorInfoRequest $request
      */
-    public function updateInfo(VendorInfoRequest $request){
+    public function updateInfo(VendorInfoRequest $request)
+    {
         // validation
         $data = $request->validated();
 
@@ -28,23 +29,23 @@ class VendorController extends UserController
             'address' => $data['address']
         ];
 
-        $shopData = [
-            'shop_description' => $data['shop_description'],
-            'shop_name' => $data['shop_name']
-        ];
+        // $shopData = [
+        //     'shop_description' => $data['shop_description'],
+        //     'shop_name' => $data['shop_name']
+        // ];
 
-        $vendor_id = DB::table('vendor_shop')
-            ->where('user_id', '=', $userId)
-            ->get(['vendor_id'])[0];
+        // $vendor_id = DB::table('vendor_shop')
+        //     ->where('user_id', '=', $userId)
+        //     ->get(['vendor_id'])[0];
 
+        // if ($this->updateUserData($userId, $userData) && $this->updateShopData((int)$vendor_id->vendor_id, $shopData))
+        if ($this->updateUserData($userId, $userData)) {
 
-        if ($this->updateUserData($userId, $userData) && $this->updateShopData((int)$vendor_id->vendor_id, $shopData))
             return response(['msg' => "Your Info is updated successfully"], 200);
-        else{
+        } else {
             toastr()->error('Failed to save changes, try again.');
             return redirect()->route('vendor-profile');
         }
-
     }
 
     /**
@@ -52,7 +53,8 @@ class VendorController extends UserController
      * @param array $data
      * @return bool
      */
-    private function updateUserData(int $userId, Array $data): bool{
+    private function updateUserData(int $userId, array $data): bool
+    {
         return User::findOrFail($userId)->update($data);
     }
 
@@ -61,7 +63,8 @@ class VendorController extends UserController
      * @param array $data
      * @return bool
      */
-    private function updateShopData(int $vendorId, Array $data): bool{
+    private function updateShopData(int $vendorId, array $data): bool
+    {
         return DB::table('vendor_shop')->where('vendor_id', '=', $vendorId)->update($data);
     }
 
@@ -69,9 +72,9 @@ class VendorController extends UserController
      * @param int $userId
      * To return the id of the current user's shop
      */
-    public static function getVendorId(int $userId){
+    public static function getVendorId(int $userId)
+    {
         return DB::table('vendor_shop')->where('user_id', $userId)
             ->select('vendor_id')->value('vendor_id');
     }
-
 }

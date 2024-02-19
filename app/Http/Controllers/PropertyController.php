@@ -9,6 +9,7 @@ use App\MyHelpers;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PropertyController extends Controller
 {
@@ -67,5 +68,23 @@ class PropertyController extends Controller
             return response(['msg' => 'property is updated successfully.'], 200);
         else
             return redirect()->route('admin-property')->with('error', 'Something went wrong, try again.');
+    }
+
+    public function index()
+    {
+        $user = Auth::user();
+
+        if ($user->role === 'admin') {
+            $properties = Property::all();
+        } elseif ($user->role === 'vendor') {
+            $properties = Property::where('user_id', $user->id)->get();
+        }
+
+        $vendors = DB::table('users')->where('role', '=', 'vendor')->get();
+
+        return view('backend.property.property_list', [
+            'data' => $properties,
+            'users' => $vendors,
+        ]);
     }
 }

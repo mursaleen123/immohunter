@@ -29,10 +29,10 @@
                                     </div>
                                     <div class="text-center">
                                         <h3 class="">Sign in</h3>
-                                        <p>Don't have an account yet? <a href="/register">Sign up here</a>
-                                        </p>
+                                        {{-- <p>Don't have an account yet? <a href="/register">Sign up here</a>
+                                        </p> --}}
                                     </div>
-                                    <div class="d-grid">
+                                    {{-- <div class="d-grid">
                                         <a class="btn my-4 shadow-sm btn-white" href="social_auth/google"> <span
                                                 class="d-flex
                                     justify-content-center align-items-center">
@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="login-separater text-center mb-4"> <span>OR SIGN IN WITH USERNAME</span>
                                         <hr />
-                                    </div>
+                                    </div> --}}
                                     <div class="form-body">
                                         <form id="login_form" class="row g-3" method="POST"
                                             action="{{ route('login') }}">

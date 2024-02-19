@@ -55,25 +55,26 @@
             </li>
         @endif
 
-        <li>
-            <a class="has-arrow" style="cursor: pointer">
-                <div class="parent-icon"><i class='lni lni-home'></i>
-                </div>
-                <div class="menu-title">Properties</div>
-            </a>
-            <ul>
-                <li> <a href="{{ route('property') }}"><i class='lni lni-world'></i>Show All</a>
-                </li>
-                @if ($role === 'admin')
-                    <li> <a href="{{ route('property-add') }}"><i class="bx bx-right-arrow-alt"></i>Add Property</a>
-                    </li>
-                @endif
-            </ul>
 
-        </li>
 
 
         @if ($status)
+            <li>
+                <a class="has-arrow" style="cursor: pointer">
+                    <div class="parent-icon"><i class='lni lni-home'></i>
+                    </div>
+                    <div class="menu-title">Properties</div>
+                </a>
+                <ul>
+                    <li> <a href="{{ route('property') }}"><i class='lni lni-world'></i>Show All</a>
+                    </li>
+                    @if ($role === 'admin')
+                        <li> <a href="{{ route('property-add') }}"><i class="bx bx-right-arrow-alt"></i>Add Property</a>
+                        </li>
+                    @endif
+                </ul>
+
+            </li>
             {{-- <li>
                 <a class="has-arrow" style="cursor: pointer">
                     <div class="parent-icon"><i class='lni lni-checkmark-circle'></i>
