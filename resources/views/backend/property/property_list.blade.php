@@ -170,23 +170,29 @@
                                                                                                         @else
                                                                                                             <li
                                                                                                                 class="d-flex justify-content-between">
-                                                                                                                <strong>Property
-                                                                                                                    Link:</strong>
+                                                                                                                <strong>Assign
+                                                                                                                    Employe:</strong>
                                                                                                                 <span>
+                                                                                                                    <input
+                                                                                                                    type="hidden"
+                                                                                                                        name="property_id"
+                                                                                                                        id="property_id"
+                                                                                                                        readonly
+                                                                                                                        value="{{ $item->id }}">
                                                                                                                     <select
                                                                                                                         name="user_id"
+                                                                                                                        id="assign_employee"
                                                                                                                         class="form-control"
                                                                                                                         required>
                                                                                                                         <option
                                                                                                                             value="">
                                                                                                                             Assign
-                                                                                                                            Employe
+                                                                                                                            Employee
                                                                                                                         </option>
-
-                                                                                                                        @foreach ($data as $employe)
+                                                                                                                        @foreach ($users as $employee)
                                                                                                                             <option
-                                                                                                                                value="{{ $employe->id }}">
-                                                                                                                                {{ $employe->name }}
+                                                                                                                                value="{{ $employee->id }}">
+                                                                                                                                {{ $employee->name }}
                                                                                                                             </option>
                                                                                                                         @endforeach
                                                                                                                     </select>
@@ -204,7 +210,8 @@
                                                                                                 <div class="col-sm-12">
                                                                                                     <div
                                                                                                         class="title-box-d">
-                                                                                                        <h3 class="title-d">
+                                                                                                        <h3
+                                                                                                            class="title-d">
                                                                                                             Property
                                                                                                             Description
                                                                                                         </h3>
@@ -215,7 +222,7 @@
                                                                                                 class="property-description">
                                                                                                 <p
                                                                                                     class="description color-text-a">
-                                                                                                  {{$item->description}}
+                                                                                                    {{ $item->description }}
                                                                                                 </p>
                                                                                             </div>
 
@@ -282,9 +289,44 @@
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            $('#assign_employee').change(function() {
+                var selectedValue = $(this).val(); // Get selected value using jQuery
+                var property_id = $('#property_id').val(); // Get the value of property_id input
+                console.log(property_id);
 
+                // AJAX request
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('assign-property') }}", // URL to submit the form to
+                    data: {
+                        property_id: property_id, // Pass property_id to the server
+                        user_id: selectedValue // Pass selected user_id to the server
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                            'content') // Include CSRF token
+                    },
+                    success: function(response) {
+                        // Handle successful response
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Property assigned successfully!',
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error response
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'An error occurred while assigning the property.',
+                        });
+                    }
+                });
+            });
         });
     </script>
+
 
 @endsection
 
