@@ -174,7 +174,7 @@
                                                                                                                     Employe:</strong>
                                                                                                                 <span>
                                                                                                                     <input
-                                                                                                                    type="hidden"
+                                                                                                                        type="hidden"
                                                                                                                         name="property_id"
                                                                                                                         id="property_id"
                                                                                                                         readonly
@@ -229,9 +229,56 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="container mt-3">
 
+                                                                                        <button type="button"
+                                                                                        class="btn btn-light toggle-btn">New</button>
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            width="24" height="24">
+                                                                                            <path
+                                                                                                d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
+                                                                                                fill="#ccc" />
+                                                                                        </svg>
+                                                                                        <button type="button"
+                                                                                            class="btn btn-light toggle-btn">In-Contact</button>
+                                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            width="24" height="24">
+                                                                                            <path
+                                                                                                d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
+                                                                                                fill="#ccc" />
+                                                                                        </svg>
+                                                                                        <button type="button"
+                                                                                            class="btn btn-success toggle-btn">Pending</button>
+                                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            width="24" height="24">
+                                                                                            <path
+                                                                                                d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
+                                                                                                fill="#ccc" />
+                                                                                        </svg>
+                                                                                        <button type="button"
+                                                                                            class="btn btn-light toggle-btn">Accepted</button>
+                                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            width="24" height="24">
+                                                                                            <path
+                                                                                                d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
+                                                                                                fill="#ccc" />
+                                                                                        </svg>
+                                                                                        <button type="button"
+                                                                                            class="btn btn-light toggle-btn">Completed</button>
+                                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            width="24" height="24">
+                                                                                            <path
+                                                                                                d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
+                                                                                                fill="#ccc" />
+                                                                                        </svg>
+                                                                                        <button type="button"
+                                                                                            class="btn btn-light toggle-btn">Sold</button>
+
+
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
                                                                 </section><!-- End Property Single-->
 
                                                             </div>
@@ -326,7 +373,27 @@
             });
         });
     </script>
+    <script>
+        var buttons = document.querySelectorAll('.toggle-btn');
 
+        // Add click event listener to each button
+        buttons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                // Remove 'btn-success' class from all buttons
+                buttons.forEach(function(btn) {
+                    btn.classList.remove('btn-success');
+                    btn.classList.add('btn-light');
+                });
+
+                // Add 'btn-success' class to the clicked button
+                button.classList.remove('btn-light');
+                button.classList.add('btn-success');
+
+                // Alert the button's value
+                alert(button.textContent);
+            });
+        });
+    </script>
 
 @endsection
 
