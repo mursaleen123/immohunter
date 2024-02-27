@@ -233,7 +233,7 @@
                                                                                     <div class="container mt-3">
 
                                                                                         <button type="button"
-                                                                                        class="btn btn-light toggle-btn">New</button>
+                                                                                        class="btn {{$item->status === 'new' ? 'btn-success' : 'btn-light' }} toggle-btn">New</button>
                                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                                             width="24" height="24">
                                                                                             <path
@@ -241,7 +241,7 @@
                                                                                                 fill="#ccc" />
                                                                                         </svg>
                                                                                         <button type="button"
-                                                                                            class="btn btn-light toggle-btn">In-Contact</button>
+                                                                                            class="btn {{$item->status === 'in-contact' ? 'btn-success' : 'btn-light' }} toggle-btn">In-Contact</button>
                                                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                                             width="24" height="24">
                                                                                             <path
@@ -249,7 +249,7 @@
                                                                                                 fill="#ccc" />
                                                                                         </svg>
                                                                                         <button type="button"
-                                                                                            class="btn btn-success toggle-btn">Pending</button>
+                                                                                            class="btn {{$item->status === 'pending' ? 'btn-success' : 'btn-light' }} toggle-btn">Pending</button>
                                                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                                             width="24" height="24">
                                                                                             <path
@@ -257,7 +257,7 @@
                                                                                                 fill="#ccc" />
                                                                                         </svg>
                                                                                         <button type="button"
-                                                                                            class="btn btn-light toggle-btn">Accepted</button>
+                                                                                            class="btn {{$item->status === 'accepted' ? 'btn-success' : 'btn-light' }} toggle-btn">Accepted</button>
                                                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                                             width="24" height="24">
                                                                                             <path
@@ -265,7 +265,7 @@
                                                                                                 fill="#ccc" />
                                                                                         </svg>
                                                                                         <button type="button"
-                                                                                            class="btn btn-light toggle-btn">Completed</button>
+                                                                                            class="btn {{$item->status === 'new' ? 'btn-completed' : 'btn-light' }} toggle-btn">Completed</button>
                                                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                                             width="24" height="24">
                                                                                             <path
@@ -273,7 +273,7 @@
                                                                                                 fill="#ccc" />
                                                                                         </svg>
                                                                                         <button type="button"
-                                                                                            class="btn btn-light toggle-btn">Sold</button>
+                                                                                            class="btn {{$item->status === 'so;d' ? 'btn-success' : 'btn-light' }} toggle-btn">Sold</button>
 
 
                                                                                     </div>
