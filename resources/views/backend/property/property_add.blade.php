@@ -83,9 +83,12 @@
                     <div class="col-sm-9 text-secondary">
                         <select name="status" class="form-control" required>
                             <option value="">Select Status</option>
-                            <option value="available">Available</option>
-                            <option value="occupied">Occupied</option>
-                            <option value="under maintenance">Under Maintenance</option>
+                            <option value="new">New</option>
+                            <option value="in-contact">In-Contact</option>
+                            <option value="pending">Pending</option>
+                            <option value="accepted">Accepted</option>
+                            <option value="completed">Completed</option>
+                            <option value="sold">Sold</option>
                         </select>
                         <small style="color: #e20000" class="error" id="status-error"></small>
                     </div>

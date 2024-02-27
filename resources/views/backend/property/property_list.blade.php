@@ -32,7 +32,7 @@
                 @endif
                 <div class="row">
                     @foreach ($data as $item)
-                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
                             <div class="card p-2">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
