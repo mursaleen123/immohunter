@@ -23,9 +23,10 @@ class AuthenticatedSessionController extends Controller
     /**
      * To determine which url to go after logging in.
      */
-    private function getRightRedirectRoute(): string{
+    private function getRightRedirectRoute(): string
+    {
         $role = Auth::user()->role;
-        switch ($role){
+        switch ($role) {
             case 'admin':
                 $url = '/admin/profile';
                 break;
@@ -43,8 +44,10 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-
+        $mesg = $request->authenticate();
+        if ($mesg) {
+            return  redirect()->back()->with('error', trans('auth.failed'));
+        }
         $request->session()->regenerate();
 
         return redirect()->intended($this->getRightRedirectRoute());

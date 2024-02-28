@@ -98,7 +98,7 @@ class AdminController extends UserController
             return redirect()->back()->with('success', 'Email Sent Successfully');
         } catch (\Exception $e) {
             // Handle any exceptions that occur
-            dd($e->getMessage()); // Dump and die to see the error message
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
     public function savePassword(Request $request)
