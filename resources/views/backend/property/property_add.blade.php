@@ -54,7 +54,7 @@
                         <h6 class="mb-0">Price</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        <input name="price" type="text" class="form-control" required />
+                        <input name="price" type="number" class="form-control" required />
                         <small style="color: #e20000" class="error" id="price-error"></small>
                     </div>
                 </div>
