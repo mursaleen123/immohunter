@@ -12,15 +12,16 @@ use Illuminate\Queue\SerializesModels;
 class PropertyAssigned extends Mailable
 {
     use Queueable, SerializesModels;
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -35,6 +36,7 @@ class PropertyAssigned extends Mailable
         );
     }
 
+
     /**
      * Get the message content definition.
      *
@@ -43,7 +45,7 @@ class PropertyAssigned extends Mailable
     public function content()
     {
         return new Content(
-            view: 'view.name',
+            markdown: 'backend.emails.PropertyAssigned',
         );
     }
 

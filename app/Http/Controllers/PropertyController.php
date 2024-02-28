@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\propertyRequest;
+use App\Mail\PropertyAssigned;
 use App\Models\Property;
 use App\Models\propertyModel;
+use App\Models\User;
 use App\MyHelpers;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class PropertyController extends Controller
 {
@@ -18,8 +21,10 @@ class PropertyController extends Controller
     {
 
         $data =  $request->except(['_token']);
-
+        $user = User::where('id', $data['user_id'])->first();
         if (Property::insert($data)) {
+            Mail::to($user->email)->send(new PropertyAssigned($user));
+
             return redirect()->back()->with('success', 'Property Added Successfully');
         } else {
         }

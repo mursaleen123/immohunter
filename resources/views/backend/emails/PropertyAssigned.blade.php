@@ -28,13 +28,13 @@
                 style="margin:0 auto;font-size: 15px;">
                 <tbody>
                     <tr>
-                        <td style="background-color: #3b5574; padding: 20px 30px; margin:0 auto; font-size: 30px; font-family: sans-serif;"
+                        <td style="padding: 20px 30px; margin:0 auto; font-size: 30px; font-family: sans-serif;"
                             align="center" valign="middle">
                         </td>
                     </tr>
                     <tr>
                         <td
-                            style="background-color: #3b5574; color: #fff; padding: 0px 30px 25px; font-size: 30px; font-family: sans-serif;">
+                            style="background-color: #fff; color: #fff; border-bottom: 1px solid #000;padding: 0px 30px 25px; font-size: 30px; font-family: sans-serif;">
                             <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0"
                                 width="100%" style="margin:0 auto;font-size: 15px;">
                                 <tbody>
@@ -48,40 +48,15 @@
                                                     align="center" valign="middle">
                                             </a>
                                         </td>
-                                        <td valign="middle"
-                                            style="display: inline-block; max-width: 300px; width: 100%;">
-                                            <p style="margin: 0 0 10px;">
-                                                <span
-                                                    style="width:18px;display: inline-block;vertical-align: middle;margin:-4px 10px 0 0;"><img
-                                                        src="https://portal.irccollective.com/admin/images/people.svg"
-                                                        alt="" style="width: 100%; display: block"></span>
-                                                Immo Hunter
-                                            </p>
-                                            <p style="margin: 0 0 10px;">
-                                                <span
-                                                    style="width:15px;display: inline-block;vertical-align: middle;margin:-4px 14px 0 0;"><img
-                                                        src="https://portal.irccollective.com/admin/images/mail.svg"
-                                                        alt="" style="width: 100%; display: block"></span>
-                                                <a href=""
-                                                    style="color: #fff; text-decoration: none">chris@irccollective.com</a>
-                                            </p>
-                                            <p style="margin: 0 0 10px;">
-                                                <span
-                                                    style="width:8px;display: inline-block;vertical-align: middle;margin:-4px 22px 0 0;"><img
-                                                        src="https://portal.irccollective.com/admin/images/phone.svg"
-                                                        alt="" style="width: 100%; display: block"></span>
-                                                780-686-0037
-                                            </p>
-                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </td>
                     </tr>
                     <tr>
-                        <td style="background-color: #3b5574; color: #fff; padding: 0 30px 10px; font-size: 40px; font-family: sans-serif;"
+                        <td style="background-color: #fff; color: #fff; padding: 0 30px 10px; font-size: 40px; font-family: sans-serif;"
                             align="right" valign="middle">
-                            Account Registration
+                            Property Assigned
                         </td>
                     </tr>
                     <tr>
@@ -98,56 +73,18 @@
                                     <tr>
                                         <td style="padding: 0px 30px 25px; font-size: 16px; font-family: sans-serif;"
                                             align="left" valign="middle">
-                                            Dear Employe,
+                                            Dear {{ $user->name }},
                                         </td>
                                     </tr>
                                     <tr>
                                         <td style=" padding: 0px 30px 25px; font-size: 16px; font-family: sans-serif;"
                                             align="left" valign="middle">
-                                            <p style="margin: 0; line-height: 25px">Admin has registered your account on
-                                                our website. Please set your password to login
+                                            <p style="margin: 0; line-height: 25px">Admin has assigned you a Property .
+                                                Please check it out now
                                             </p>
                                         </td>
                                     </tr>
-                                    <form action="{{ route('savePassword') }}" method="GET">
-                                        @csrf
-                                        <tr>
-                                            <td style="padding: 0px 30px 25px; font-size: 16px; font-family: sans-serif;"
-                                                align="left" valign="middle">
-                                                <p style="margin: 0; line-height: 25px">
-                                                    <b>
-                                                        <label for="username">Username: </label>
-                                                        <input type="text" id="username" name="username"
-                                                            required><br>
-                                                        <input type="hidden" id="email" name="email"
-                                                            value="{{ $email }}" readonly><br>
-                                                    </b>
-                                                </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 0px 30px 25px; font-size: 16px; font-family: sans-serif;"
-                                                align="left" valign="middle">
-                                                <p style="margin: 0; line-height: 25px">
-                                                    <b>
-                                                        <label for="password">Password: </label>
-                                                        <input type="password" id="password" name="password"
-                                                            required><br>
-                                                    </b>
-                                                </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 0px 30px 25px; font-size: 16px; font-family: sans-serif;"
-                                                align="left" valign="middle">
-                                                <p style="margin: 0; line-height: 25px">
-                                                    <b>
-                                                        <input type="submit" value="Set Password">
-                                                    </b>
-                                                </p>
-                                            </td>
-                                        </tr>
-                                    </form>
+
                                     <tr>
                                         <td style=" padding: 0px 30px 20px; font-size: 16px; font-family: sans-serif;"
                                             align="left" valign="middle">
@@ -171,7 +108,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="background-color: #3b5574; padding: 20px 30px; margin:0 auto; font-size: 30px; font-family: sans-serif;"
+                        <td style="background-color: #fff; padding: 20px 30px; margin:0 auto; font-size: 30px; font-family: sans-serif;"
                             align="center" valign="middle">
                             <a href=""
                                 style="display: inline-block; vertical-align: middle; width: 30px; margin: 0 5px 0 0;"><img

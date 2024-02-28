@@ -22,7 +22,6 @@ class SetPasswordEmail extends Mailable
     public function __construct($email)
     {
         $this->email = $email;
-;
     }
     /**
      * Get the message envelope.
