@@ -87,4 +87,12 @@ class PropertyController extends Controller
             'users' => $vendors,
         ]);
     }
+    public function updateStatus(Request $request, $id)
+    {
+        $property = Property::where('id', $id)->update(['status' => $request->status]);
+        // $property->status = $request->status;
+        // $property->save();
+
+        return response()->json(['message' => 'Status updated successfully']);
+    }
 }

@@ -231,9 +231,9 @@
                                                                                 </div>
                                                                                 <div class="col-sm-12">
                                                                                     <div class="container mt-3">
-
+                                                                                        <input type="hidden" value="{{$item->id}}" id="property_id_value">
                                                                                         <button type="button"
-                                                                                        class="btn {{$item->status === 'new' ? 'btn-success' : 'btn-light' }} toggle-btn">New</button>
+                                                                                            class="btn {{ $item->status === 'new' ? 'btn-success' : 'btn-light' }} toggle-btn">New</button>
                                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                                             width="24" height="24">
                                                                                             <path
@@ -241,39 +241,40 @@
                                                                                                 fill="#ccc" />
                                                                                         </svg>
                                                                                         <button type="button"
-                                                                                            class="btn {{$item->status === 'in-contact' ? 'btn-success' : 'btn-light' }} toggle-btn">In-Contact</button>
-                                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            class="btn {{ $item->status === 'in-contact' ? 'btn-success' : 'btn-light' }} toggle-btn">In-Contact</button>
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
                                                                                             width="24" height="24">
                                                                                             <path
                                                                                                 d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
                                                                                                 fill="#ccc" />
                                                                                         </svg>
                                                                                         <button type="button"
-                                                                                            class="btn {{$item->status === 'pending' ? 'btn-success' : 'btn-light' }} toggle-btn">Pending</button>
-                                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            class="btn {{ $item->status === 'pending' ? 'btn-success' : 'btn-light' }} toggle-btn">Pending</button>
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
                                                                                             width="24" height="24">
                                                                                             <path
                                                                                                 d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
                                                                                                 fill="#ccc" />
                                                                                         </svg>
                                                                                         <button type="button"
-                                                                                            class="btn {{$item->status === 'accepted' ? 'btn-success' : 'btn-light' }} toggle-btn">Accepted</button>
-                                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            class="btn {{ $item->status === 'accepted' ? 'btn-success' : 'btn-light' }} toggle-btn">Accepted</button>
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
                                                                                             width="24" height="24">
                                                                                             <path
                                                                                                 d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
                                                                                                 fill="#ccc" />
                                                                                         </svg>
                                                                                         <button type="button"
-                                                                                            class="btn {{$item->status === 'new' ? 'btn-completed' : 'btn-light' }} toggle-btn">Completed</button>
-                                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            class="btn {{ $item->status === 'new' ? 'btn-completed' : 'btn-light' }} toggle-btn">Completed</button>
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
                                                                                             width="24" height="24">
                                                                                             <path
                                                                                                 d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
                                                                                                 fill="#ccc" />
                                                                                         </svg>
+                                                                                        {{$item->status}}
                                                                                         <button type="button"
-                                                                                            class="btn {{$item->status === 'so;d' ? 'btn-success' : 'btn-light' }} toggle-btn">Sold</button>
+                                                                                            class="btn {{ $item->status === 'sold' ? 'btn-success' : 'btn-light' }} toggle-btn">Sold</button>
 
 
                                                                                     </div>
@@ -376,7 +377,6 @@
     <script>
         var buttons = document.querySelectorAll('.toggle-btn');
 
-        // Add click event listener to each button
         buttons.forEach(function(button) {
             button.addEventListener('click', function() {
                 // Remove 'btn-success' class from all buttons
@@ -389,8 +389,28 @@
                 button.classList.remove('btn-light');
                 button.classList.add('btn-success');
 
-                // Alert the button's value
-                alert(button.textContent);
+                var property_id = $('#property_id_value').val();
+                var status = button.textContent.trim();
+                // Send AJAX request
+                $.ajax({
+                    url: '/update-property-status/' + property_id,
+                    type: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}' // Assuming you're using CSRF protection
+                    },
+                    data: {
+                        status: status
+                    },
+                    success: function(response) {
+                        // Show Swal notification
+                        Swal.fire('Success', response.message, 'success');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                        // Show Swal notification for error
+                        Swal.fire('Error', 'An error occurred', 'error');
+                    }
+                });
             });
         });
     </script>

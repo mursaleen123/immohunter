@@ -114,6 +114,6 @@ class AdminController extends UserController
                 'username' => $request->username
             ]);
         }
-        return response()->json(['message' => 'Please contact admin to activate your profile'], 403);
+        return response()->json(['message' => 'Please contact admin to activate your profile'], 200);
     }
 }

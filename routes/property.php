@@ -29,4 +29,6 @@ Route::controller(PropertyController::class)->group(function () {
             return response(['error' => 'Property not found.'], 404);
         }
     })->name('assign-property');
+
+    Route::post('/update-property-status/{id}', 'updateStatus')->name('update.property.status');
 });
