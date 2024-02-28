@@ -269,7 +269,7 @@
                                                                                                 fill="#ccc" />
                                                                                         </svg>
                                                                                         <button type="button"
-                                                                                            class="btn {{ $item->status === 'new' ? 'btn-success' : 'btn-light' }} toggle-btn">Completed</button>
+                                                                                            class="btn {{ $item->status === 'completed' ? 'btn-success' : 'btn-light' }} toggle-btn">Completed</button>
                                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                                             width="24" height="24">
                                                                                             <path
