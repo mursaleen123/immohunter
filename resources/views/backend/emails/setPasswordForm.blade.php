@@ -25,8 +25,8 @@
                     </tr>
                     <tr>
                         <td style="text-align:center;">
-                            <a href="https://rakeshmandal.com" title="logo" target="_blank">
-                                <img width="200" src="http://127.0.0.1:9000/backend_assets/images/logos/logo-img.png"
+                            <a href="https://immohunter.site/" title="logo" target="_blank">
+                                <img width="200" src="https://immohunter.site/backend_assets/images/logos/logo-img.png"
                                     title="logo" alt="logo">
                             </a>
                         </td>

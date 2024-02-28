@@ -103,17 +103,25 @@ class AdminController extends UserController
     }
     public function savePassword(Request $request)
     {
-        $user = DB::table('users')->where('email', $request->email)->first();
+        try {
 
-        if ($user) {
-            DB::table('users')->where('email', $request->email)->update([
-                'password' => bcrypt($request->password)
-            ]);
+            $user = DB::table('users')->where('email', $request->email)->first();
 
-            DB::table('users')->where('email', $request->email)->update([
-                'username' => $request->username
-            ]);
+            if ($user) {
+
+                DB::table('users')->where('email', $request->email)->update([
+                    'password' => bcrypt($request->password)
+                ]);
+
+                DB::table('users')->where('email', $request->email)->update([
+                    'username' => $request->username
+                ]);
+            }
+
+            return response()->json(['message' => 'Please Contact admin to  Activate your Account'], 200);
+        } catch (\Exception $e) {
+            // Log the error or handle it appropriately
+            return response()->json(['error' => 'An error occurred while saving password'], 500);
         }
-        return response()->json(['message' => 'Please contact admin to activate your profile'], 200);
     }
 }
