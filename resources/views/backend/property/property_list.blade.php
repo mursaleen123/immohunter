@@ -32,12 +32,14 @@
                 @endif
                 <div class="row">
                     @foreach ($data as $item)
-                        <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                        <div class="col-lg-4 col-md-5 col-sm-6 mb-4">
                             <div class="card p-2">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
-                                        <h5 class="card-title">{{ $item->title }}</h5>
                                         <p class="card-text">#{{ $item->id }}</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <h5 class="card-title">{{ $item->title }}</h5>
                                     </div>
 
                                     <div>
@@ -231,7 +233,9 @@
                                                                                 </div>
                                                                                 <div class="col-sm-12">
                                                                                     <div class="container mt-3">
-                                                                                        <input type="hidden" value="{{$item->id}}" id="property_id_value">
+                                                                                        <input type="hidden"
+                                                                                            value="{{ $item->id }}"
+                                                                                            id="property_id_value">
                                                                                         <button type="button"
                                                                                             class="btn {{ $item->status === 'new' ? 'btn-success' : 'btn-light' }} toggle-btn">New</button>
                                                                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -265,17 +269,15 @@
                                                                                                 fill="#ccc" />
                                                                                         </svg>
                                                                                         <button type="button"
-                                                                                            class="btn {{ $item->status === 'new' ? 'btn-completed' : 'btn-light' }} toggle-btn">Completed</button>
+                                                                                            class="btn {{ $item->status === 'new' ? 'btn-success' : 'btn-light' }} toggle-btn">Completed</button>
                                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                                             width="24" height="24">
                                                                                             <path
                                                                                                 d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
                                                                                                 fill="#ccc" />
                                                                                         </svg>
-                                                                                        {{$item->status}}
                                                                                         <button type="button"
                                                                                             class="btn {{ $item->status === 'sold' ? 'btn-success' : 'btn-light' }} toggle-btn">Sold</button>
-
 
                                                                                     </div>
                                                                                 </div>
@@ -389,8 +391,10 @@
                 button.classList.remove('btn-light');
                 button.classList.add('btn-success');
 
-                var property_id = $('#property_id_value').val();
+                var property_id = $(this).closest('.container').find('#property_id_value')
+            .val(); // Fetch property ID dynamically
                 var status = button.textContent.trim();
+                alert(property_id);
                 // Send AJAX request
                 $.ajax({
                     url: '/update-property-status/' + property_id,
@@ -414,6 +418,7 @@
             });
         });
     </script>
+
 
 @endsection
 
