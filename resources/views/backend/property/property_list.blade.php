@@ -394,7 +394,6 @@
                 var property_id = $(this).closest('.container').find('#property_id_value')
             .val(); // Fetch property ID dynamically
                 var status = button.textContent.trim();
-                alert(property_id);
                 // Send AJAX request
                 $.ajax({
                     url: '/update-property-status/' + property_id,
