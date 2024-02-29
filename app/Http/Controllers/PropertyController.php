@@ -80,9 +80,9 @@ class PropertyController extends Controller
         $user = Auth::user();
 
         if ($user->role === 'admin') {
-            $properties = Property::latest()->get();
+            $properties = Property::orderByDesc('id')->get();
         } elseif ($user->role === 'vendor') {
-            $properties = Property::where('user_id', $user->id)->latest()->get();
+            $properties = Property::where('user_id', $user->id)->orderByDesc('id')->get();
         }
 
         $vendors = DB::table('users')->where('role', '=', 'vendor')->get();
@@ -92,6 +92,7 @@ class PropertyController extends Controller
             'users' => $vendors,
         ]);
     }
+
 
     public function updateStatus(Request $request, $id)
     {
