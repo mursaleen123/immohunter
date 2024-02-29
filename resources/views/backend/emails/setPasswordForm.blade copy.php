@@ -26,8 +26,7 @@
                     <tr>
                         <td style="text-align:center;">
                             <a href="https://immohunter.site/" title="logo" target="_blank">
-                                <img width="200"
-                                    src="https://immohunter.site/backend_assets/images/logos/logo-img.png"
+                                <img width="200" src="https://immohunter.site/backend_assets/images/logos/logo-img.png"
                                     title="logo" alt="logo">
                             </a>
                         </td>
@@ -56,42 +55,49 @@
                                             following link and follow the instructions.
                                         </p> --}}
                                         {{-- <a href="javascript:void(0);" --}}
-                                        {{-- style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Reset
+                                            {{-- style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Reset
                                             Password</a> --}}
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <table width="95%" border="0" align="center" cellpadding="0"
-                                            cellspacing="0"
-                                            style="max-width:670px;background:#fff; border-radius:3px; text-align:center;-webkit-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);-moz-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);box-shadow:0 6px 18px 0 rgba(0,0,0,.06);">
-                                            <tr>
-                                                <td style="height:40px;">&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="padding:0 35px;">
-                                                    <h1
-                                                        style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:'Rubik',sans-serif;">
-                                                        You have requested to set your password</h1>
-                                                    <span
-                                                        style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
-                                                    <p
-                                                        style="color:#455056; font-size:15px;line-height:24px; margin:0;">
-                                                        We cannot simply send you your old password. A unique link to
-                                                        reset your password has been generated for you. To reset your
-                                                        password, click the following link and follow the instructions.
-                                                    </p>
-                                                    <a href="{{ route('savePasswordView', [$email]) }}"
-                                                        style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Reset
-                                                        Password</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="height:40px;">&nbsp;</td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
+                                <form action="{{ route('savePassword') }}" method="GET">
+                                    @csrf
+                                    <tr>
+                                        <td style="padding: 0px 30px 25px; font-size: 16px; font-family: sans-serif;"
+                                            align="left" valign="middle">
+                                            <p style="margin: 0; line-height: 25px">
+                                                <b>
+                                                    <label for="username">Username: </label>
+                                                    <input type="text" id="username" name="username"
+                                                        required><br>
+                                                    <input type="hidden" id="email" name="email"
+                                                        value="{{ $email }}" readonly><br>
+                                                </b>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0px 30px 25px; font-size: 16px; font-family: sans-serif;"
+                                            align="left" valign="middle">
+                                            <p style="margin: 0; line-height: 25px">
+                                                <b>
+                                                    <label for="password">Password: </label>
+                                                    <input type="password" id="password" name="password"
+                                                        required><br>
+                                                </b>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0px 30px 25px; font-size: 16px; font-family: sans-serif;"
+                                            align="left" valign="middle">
+                                            <p style="margin: 0; line-height: 25px">
+                                                <b>
+                                                    <input type="submit" value="Set Password" style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">
+                                                </b>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </form>
                                 <tr>
                                     <td style="height:40px;">&nbsp;</td>
                                 </tr>

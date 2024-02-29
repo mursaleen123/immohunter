@@ -18,24 +18,26 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::fallback(function (){
+Route::fallback(function () {
     return redirect()->route('login');
 });
 
-Route::get('/save-password', [AdminController::class, 'savePassword'])->name('savePassword');
+Route::post('/save-password', [AdminController::class, 'savePassword'])->name('savePassword');
 
+Route::get('/save-password-view/{email}', function ($email) {
+    return view('auth.setPassword', compact('email'));
+})->name('savePasswordView');
 
-require_once __DIR__.'/auth.php';
-require_once __DIR__.'/admin.php';
-require_once __DIR__.'/vendor.php';
-require_once __DIR__.'/profile.php';
-require_once __DIR__.'/user.php';
-require_once __DIR__.'/brand.php';
-require_once __DIR__.'/category.php';
-require_once __DIR__.'/sub_category.php';
-require_once __DIR__.'/product.php';
-require_once __DIR__.'/coupon.php';
-require_once __DIR__.'/notifications.php';
-require_once __DIR__.'/socialite.php';
-require_once __DIR__.'/property.php';
-
+require_once __DIR__ . '/auth.php';
+require_once __DIR__ . '/admin.php';
+require_once __DIR__ . '/vendor.php';
+require_once __DIR__ . '/profile.php';
+require_once __DIR__ . '/user.php';
+require_once __DIR__ . '/brand.php';
+require_once __DIR__ . '/category.php';
+require_once __DIR__ . '/sub_category.php';
+require_once __DIR__ . '/product.php';
+require_once __DIR__ . '/coupon.php';
+require_once __DIR__ . '/notifications.php';
+require_once __DIR__ . '/socialite.php';
+require_once __DIR__ . '/property.php';
