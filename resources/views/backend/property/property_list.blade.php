@@ -37,6 +37,41 @@
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
                                         <p class="card-text">#{{ $item->id }}</p>
+
+                                        <p
+                                            class="badge rounded-pill bg-light-{{ $item->status === 'in-contact'
+                                                ? 'secondary'
+                                                : ($item->status === 'pending'
+                                                    ? 'warning'
+                                                    : ($item->status === 'accepted'
+                                                        ? 'success'
+                                                        : ($item->status === 'completed'
+                                                            ? 'primary'
+                                                            : ($item->status === 'sold'
+                                                                ? 'dark'
+                                                                : 'info')))) }}
+
+                                                                    ($item->status === 'sold' ? 'light' : 'info'))))) }}
+                                                                    text-{{ $item->status === 'in-contact'
+                                                                        ? 'secondary'
+                                                                        : ($item->status === 'pending'
+                                                                            ? 'warning'
+                                                                            : ($item->status === 'accepted'
+                                                                                ? 'success'
+                                                                                : ($item->status === 'completed'
+                                                                                    ? 'primary'
+                                                                                    : ($item->status === 'sold'
+                                                                                        ? 'light'
+                                                                                        : 'info')))) }}
+
+
+                                          ">
+                                            {{ $item->status }}
+                                        </p>
+
+
+
+
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h5 class="card-title">{{ $item->title }}</h5>
@@ -392,7 +427,7 @@
                 button.classList.add('btn-success');
 
                 var property_id = $(this).closest('.container').find('#property_id_value')
-            .val(); // Fetch property ID dynamically
+                    .val(); // Fetch property ID dynamically
                 var status = button.textContent.trim();
                 // Send AJAX request
                 $.ajax({
