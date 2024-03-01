@@ -31,4 +31,6 @@ Route::controller(PropertyController::class)->group(function () {
     })->name('assign-property');
 
     Route::post('/update-property-status/{id}', 'updateStatus')->name('update.property.status');
+    Route::get('/properties/{status}', [PropertyController::class, 'getPropertyByStatus'])->name('property-list');
+
 });

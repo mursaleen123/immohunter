@@ -93,7 +93,42 @@ class PropertyController extends Controller
         ]);
     }
 
+    public function getPropertyByStatus($status)
+    {
+        $user = Auth::user();
+        $validStatuses = ['all','new', 'in-contact', 'pending', 'accepted', 'completed', 'sold'];
 
+        if (!in_array($status, $validStatuses)) {
+            abort(404); // or handle invalid status as per your application's logic
+        }
+
+        $vendors = DB::table('users')->where('role', '=', 'vendor')->get();
+        if($status === 'all'){
+            if ($user->role === 'admin') {
+                $properties = Property::orderByDesc('id')->get();
+            } elseif ($user->role === 'vendor') {
+                $properties = Property::where('user_id', $user->id)->orderByDesc('id')->get();
+            }
+            return view('backend.property.property_list', [
+                'data' => $properties,
+                'users' => $vendors,
+            ]);
+        }
+
+        if ($user->role === 'admin') {
+            $properties = Property::where('status', $status)->orderByDesc('id')->get();
+        } elseif ($user->role === 'vendor') {
+            $properties = Property::where('user_id', $user->id)->where('status', $status)->orderByDesc('id')->get();
+        }
+
+        // $properties = Property::where('status', $status)->get();
+
+        // You can return these properties to a view to display them
+        return view('backend.property.property_list', [
+            'data' => $properties,
+            'users' => $vendors,
+        ]);
+    }
     public function updateStatus(Request $request, $id)
     {
         $property = Property::where('id', $id)->update(['status' => $request->status]);

@@ -24,12 +24,41 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive" style="overflow-x: auto;">
-                @if ($role === 'admin')
-                    <div class="ms-auto" style="margin-bottom: 20px">
+                <div class="d-flex align-items-center" style="margin-bottom: 20px">
+
+                    @if ($role === 'admin')
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle radius-30 mt-2 mt-lg-0" type="button"
+                                id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bx bx-menu"></i> Status
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" href="{{ route('property-list', ['status' => 'all']) }}"><i class="bx bxs-plus-square"></i> All</a></li>
+                                <li><a class="dropdown-item" href="{{ route('property-list', ['status' => 'new']) }}"><i class="bx bxs-plus-square"></i> New</a></li>
+                                <li><a class="dropdown-item" href="{{ route('property-list', ['status' => 'in-contact']) }}"><i class="bx bxs-plus-square"></i> In-Contact</a></li>
+                                <li><a class="dropdown-item" href="{{ route('property-list', ['status' => 'pending']) }}"><i class="bx bxs-plus-square"></i> Pending</a></li>
+                                <li><a class="dropdown-item" href="{{ route('property-list', ['status' => 'accepted']) }}"><i class="bx bxs-plus-square"></i> Accepted</a></li>
+                                <li><a class="dropdown-item" href="{{ route('property-list', ['status' => 'completed']) }}"><i class="bx bxs-plus-square"></i> Completed</a></li>
+                                <li><a class="dropdown-item" href="{{ route('property-list', ['status' => 'sold']) }}"><i class="bx bxs-plus-square"></i> Sold</a></li>
+
+                            </ul>
+
+                        </div>
+                        <div class="ms-auto">
+                            <a href="{{ route('property-add') }}" class="btn btn-primary radius-30 mt-2 mt-lg-0">
+                                <i class="bx bxs-plus-square"></i> Add New Property
+                            </a>
+                        </div>
+                    @else
                         <a href="{{ route('property-add') }}" class="btn btn-primary radius-30 mt-2 mt-lg-0">
-                            <i class="bx bxs-plus-square"></i>Add New Property</a>
-                    </div>
-                @endif
+                            <i class="bx bxs-plus-square"></i> Add New Property
+                        </a>
+                    @endif
+
+                </div>
+
+
+
                 <div class="row">
                     @foreach ($data as $item)
                         <div class="col-lg-4 col-md-5 col-sm-6 mb-4">
@@ -167,7 +196,8 @@
                                                                                                     </div>
                                                                                                     <div
                                                                                                         class="card-title-c align-self-center">
-                                                                                                        <h5 class="title-c">
+                                                                                                        <h5
+                                                                                                            class="title-c">
                                                                                                             {{ $item->price }}
                                                                                                         </h5>
                                                                                                     </div>
