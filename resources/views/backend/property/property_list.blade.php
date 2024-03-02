@@ -406,7 +406,7 @@
                                                                                                                 <a href="{{ url('uploads/images/properties/' . $image) }}"
                                                                                                                     class="d-block mb-4 h-100">
                                                                                                                     <img class="img-fluid img-thumbnail"
-                                                                                                                        src="{{ url('uploads/images/properties/' . $image) }}/400x300"
+                                                                                                                        src="{{ url('uploads/images/properties/' . $image) }}"
                                                                                                                         alt="">
                                                                                                                 </a>
                                                                                                             </div>
