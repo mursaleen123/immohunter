@@ -5,6 +5,16 @@
 @extends('backend.layouts.app')
 @section('PageTitle', 'Property List')
 @section('content')
+    <style>
+        .title-single {
+            max-height: 100px;
+            /* Adjust height as needed */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+        }
+    </style>
+
     <!--breadcrumb -->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
         <div class="breadcrumb-title pe-3">Property</div>
@@ -33,13 +43,23 @@
                                 <i class="bx bx-menu"></i> Status
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" href="{{ route('property-list', ['status' => 'all']) }}"><i class="bx bxs-plus-square"></i> All</a></li>
-                                <li><a class="dropdown-item" href="{{ route('property-list', ['status' => 'new']) }}"><i class="bx bxs-plus-square"></i> New</a></li>
-                                <li><a class="dropdown-item" href="{{ route('property-list', ['status' => 'in-contact']) }}"><i class="bx bxs-plus-square"></i> In-Contact</a></li>
-                                <li><a class="dropdown-item" href="{{ route('property-list', ['status' => 'pending']) }}"><i class="bx bxs-plus-square"></i> Pending</a></li>
-                                <li><a class="dropdown-item" href="{{ route('property-list', ['status' => 'accepted']) }}"><i class="bx bxs-plus-square"></i> Accepted</a></li>
-                                <li><a class="dropdown-item" href="{{ route('property-list', ['status' => 'completed']) }}"><i class="bx bxs-plus-square"></i> Completed</a></li>
-                                <li><a class="dropdown-item" href="{{ route('property-list', ['status' => 'sold']) }}"><i class="bx bxs-plus-square"></i> Sold</a></li>
+                                <li><a class="dropdown-item" href="{{ route('property-list', ['status' => 'all']) }}"><i
+                                            class="bx bxs-plus-square"></i> All</a></li>
+                                <li><a class="dropdown-item" href="{{ route('property-list', ['status' => 'new']) }}"><i
+                                            class="bx bxs-plus-square"></i> New</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('property-list', ['status' => 'in-contact']) }}"><i
+                                            class="bx bxs-plus-square"></i> In-Contact</a></li>
+                                <li><a class="dropdown-item" href="{{ route('property-list', ['status' => 'pending']) }}"><i
+                                            class="bx bxs-plus-square"></i> Pending</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('property-list', ['status' => 'accepted']) }}"><i
+                                            class="bx bxs-plus-square"></i> Accepted</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('property-list', ['status' => 'completed']) }}"><i
+                                            class="bx bxs-plus-square"></i> Completed</a></li>
+                                <li><a class="dropdown-item" href="{{ route('property-list', ['status' => 'sold']) }}"><i
+                                            class="bx bxs-plus-square"></i> Sold</a></li>
 
                             </ul>
 
@@ -80,7 +100,8 @@
                                                                 ? 'dark'
                                                                 : 'info')))) }}
 
-                                                                    ($item->status === 'sold' ? 'light' : 'info'))))) }}
+                                                                    ($item->status === 'sold' ? 'light' : 'info')
+)))) }}
                                                                     text-{{ $item->status === 'in-contact'
                                                                         ? 'secondary'
                                                                         : ($item->status === 'pending'
@@ -103,10 +124,11 @@
 
                                     </div>
                                     <div class="d-flex justify-content-between">
-                                        <h5 class="card-subtitle mb-2 text-muted text-truncate" title="{{ $item->title }}">
-                                          {{ \Illuminate\Support\Str::limit($item->title, 30) }}
+                                        <h5 class="card-subtitle mb-2 text-muted text-truncate"
+                                            title="{{ $item->title }}">
+                                            {{ \Illuminate\Support\Str::limit($item->title, 30) }}
                                         </h5>
-                                      </div>
+                                    </div>
 
 
                                     <div>
@@ -149,33 +171,44 @@
                                                             <div class="card-body">
                                                                 <!-- ======= Intro Single ======= -->
                                                                 <section class="intro-single">
-                                                                    <div class="container">
+                                                                    <div class="container-fluid">
                                                                         <div class="row">
-                                                                            <div class="col-md-12 col-lg-8">
-                                                                                <div class="title-single-box">
-                                                                                    <h1 class="title-single">
-                                                                                        {{ $item->title }}
-                                                                                    </h1>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-12 col-lg-4">
+                                                                            <div class="col-md-12 col-lg-12">
                                                                                 <nav aria-label="breadcrumb"
                                                                                     class="breadcrumb-box d-flex justify-content-lg-end">
                                                                                     <ol class="breadcrumb">
                                                                                         <li class="breadcrumb-item">
                                                                                             <p>Property ID :</p>
                                                                                         </li>
-
                                                                                         <li class="breadcrumb-item active"
                                                                                             aria-current="page">
-                                                                                            {{ $item->id }}
+                                                                                            <b>{{ $item->id }}</b>
                                                                                         </li>
                                                                                     </ol>
                                                                                 </nav>
                                                                             </div>
                                                                         </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-8">
+                                                                                <div class="title-single-box">
+                                                                                    <h3 class="title-single">
+                                                                                        {{ $item->title }}</h3>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4">
+                                                                                <div
+                                                                                    class="title-single-box justify-content-end">
+                                                                                    <h5 class="title-single text-end">
+                                                                                        ${{ $item->price }}
+                                                                                    </h5>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
                                                                     </div>
-                                                                </section><!-- End Intro Single-->
+
+                                                                </section>
+                                                                <!-- End Intro Single-->
 
                                                                 <!-- ======= Property Single ======= -->
                                                                 <section class="property-single nav-arrow-b">
@@ -188,51 +221,34 @@
                                                                                     <div
                                                                                         class="row justify-content-between">
                                                                                         <div class="col-md-5 col-lg-4">
-                                                                                            <div
-                                                                                                class="property-price d-flex justify-content-center foo">
-                                                                                                <div
-                                                                                                    class="card-header-c d-flex">
-                                                                                                    <div
-                                                                                                        class="card-box-ico">
-                                                                                                        <span
-                                                                                                            class="bi bi-cash">$</span>
-                                                                                                    </div>
-                                                                                                    <div
-                                                                                                        class="card-title-c align-self-center">
-                                                                                                        <h5
-                                                                                                            class="title-c">
-                                                                                                            {{ $item->price }}
-                                                                                                        </h5>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
                                                                                             <div class="property-summary">
                                                                                                 <div class="row">
                                                                                                     <div class="col-sm-12">
                                                                                                         <div
                                                                                                             class="title-box-d section-t4">
-                                                                                                            <h3
+                                                                                                            <h4
                                                                                                                 class="title-d">
                                                                                                                 Quick
                                                                                                                 Summary
-                                                                                                            </h3>
+                                                                                                            </h4>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="summary-list">
                                                                                                     <ul class="list">
-                                                                                                        <li
-                                                                                                            class="d-flex justify-content-between">
+                                                                                                        <li class="d-flex">
                                                                                                             <strong>Property
-                                                                                                                Link:</strong>
+                                                                                                                Link:&nbsp;&nbsp;</strong>
                                                                                                             <span>
-                                                                                                                {{ $item->property_link }}</span>
+                                                                                                                <a
+                                                                                                                    href="  {{ $item->property_link }}">click
+                                                                                                                    here</a></span>
                                                                                                         </li>
                                                                                                         @if ($item->user_id)
                                                                                                             <li
-                                                                                                                class="d-flex justify-content-between">
+                                                                                                                class="d-flex">
                                                                                                                 <strong>Assigned
-                                                                                                                    Employe:</strong>
+                                                                                                                    Employe:&nbsp;&nbsp;</strong>
                                                                                                                 @if ($item->user_id)
                                                                                                                     <span>{{ $user->name }}</span>
                                                                                                                 @endif
@@ -270,13 +286,109 @@
 
                                                                                                             </li>
                                                                                                         @endif
+                                                                                                        <li class="d-flex">
+                                                                                                            <strong>Property
+                                                                                                                Status:&nbsp;&nbsp;</strong>
+                                                                                                            <span
+                                                                                                                class="badge rounded-pill bg-primary">{{ $item->status }}</span>
+                                                                                                        </li>
                                                                                                     </ul>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div
-                                                                                            class="col-md-7 col-lg-7 section-md-t3">
-                                                                                            <div class="row">
+                                                                                        <div class="col-md-5 col-lg-8">
+                                                                                            <div class="property-summary">
+                                                                                                <div class="row">
+                                                                                                    <div class="col-sm-12">
+                                                                                                        <div
+                                                                                                            class="title-box-d section-t4">
+                                                                                                            <h4
+                                                                                                                class="title-d">
+                                                                                                                Property
+                                                                                                                Description
+                                                                                                            </h4>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="summary-list">
+                                                                                                    <p
+                                                                                                        class="title-single color-text-a">
+                                                                                                        {{ $item->description }}
+                                                                                                    </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <hr>
+                                                                                            <div class="col-sm-12">
+                                                                                                <div class="row">
+                                                                                                    <div class="col-sm-12">
+                                                                                                        <div
+                                                                                                            class="title-box-d section-t4">
+                                                                                                            <h4
+                                                                                                                class="title-d">
+                                                                                                                Update Status
+                                                                                                            </h4>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="container mt-3">
+                                                                                                    <input type="hidden"
+                                                                                                        value="{{ $item->id }}"
+                                                                                                        id="property_id_value">
+                                                                                                    <button type="button"
+                                                                                                        class="btn {{ $item->status === 'new' ? 'btn-success' : 'btn-light' }} toggle-btn">New</button>
+                                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                                        width="24"
+                                                                                                        height="24">
+                                                                                                        <path
+                                                                                                            d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
+                                                                                                            fill="#ccc" />
+                                                                                                    </svg>
+                                                                                                    <button type="button"
+                                                                                                        class="btn {{ $item->status === 'in-contact' ? 'btn-success' : 'btn-light' }} toggle-btn">In-Contact</button>
+                                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                                        width="24"
+                                                                                                        height="24">
+                                                                                                        <path
+                                                                                                            d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
+                                                                                                            fill="#ccc" />
+                                                                                                    </svg>
+                                                                                                    <button type="button"
+                                                                                                        class="btn {{ $item->status === 'pending' ? 'btn-success' : 'btn-light' }} toggle-btn">Pending</button>
+                                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                                        width="24"
+                                                                                                        height="24">
+                                                                                                        <path
+                                                                                                            d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
+                                                                                                            fill="#ccc" />
+                                                                                                    </svg>
+                                                                                                    <button type="button"
+                                                                                                        class="btn {{ $item->status === 'accepted' ? 'btn-success' : 'btn-light' }} toggle-btn">Accepted</button>
+                                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                                        width="24"
+                                                                                                        height="24">
+                                                                                                        <path
+                                                                                                            d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
+                                                                                                            fill="#ccc" />
+                                                                                                    </svg>
+                                                                                                    <button type="button"
+                                                                                                        class="btn {{ $item->status === 'completed' ? 'btn-success' : 'btn-light' }} toggle-btn">Completed</button>
+                                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                                        width="24"
+                                                                                                        height="24">
+                                                                                                        <path
+                                                                                                            d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
+                                                                                                            fill="#ccc" />
+                                                                                                    </svg>
+                                                                                                    <button type="button"
+                                                                                                        class="btn {{ $item->status === 'sold' ? 'btn-success' : 'btn-light' }} toggle-btn">Sold</button>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        {{-- <div
+                                                                                            class="col-md-7 col-lg-7 section-md-t3"> --}}
+                                                                                        {{-- <div class="row">
                                                                                                 <div class="col-sm-12">
                                                                                                     <div
                                                                                                         class="title-box-d">
@@ -287,19 +399,18 @@
                                                                                                         </h3>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                            </div>
-                                                                                            <div
-                                                                                                class="property-description">
+                                                                                            </div> --}}
+                                                                                        {{-- <div
+                                                                                                class="property-description description">
                                                                                                 <p
                                                                                                     class="description color-text-a">
                                                                                                     {{ $item->description }}
                                                                                                 </p>
-                                                                                            </div>
-
-                                                                                        </div>
+                                                                                            </div> --}}
+                                                                                        {{-- </div> --}}
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="col-sm-12">
+                                                                                {{-- <div class="col-sm-12">
                                                                                     <div class="container mt-3">
                                                                                         <input type="hidden"
                                                                                             value="{{ $item->id }}"
@@ -348,7 +459,7 @@
                                                                                             class="btn {{ $item->status === 'sold' ? 'btn-success' : 'btn-light' }} toggle-btn">Sold</button>
 
                                                                                     </div>
-                                                                                </div>
+                                                                                </div> --}}
                                                                             </div>
                                                                 </section><!-- End Property Single-->
 
