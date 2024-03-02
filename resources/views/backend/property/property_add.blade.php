@@ -115,7 +115,7 @@
 
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        <input type="file" name="images[]" id="images" class="form-control" multiple accept=".png">
+                        <input type="file" name="images[]" id="images" class="form-control" multiple >
                         <small style="color: #e20000" class="error" id="property_link-error"></small>
                     </div>
                 </div>
