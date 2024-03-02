@@ -146,7 +146,9 @@
                                             <span>Assigned Employee :<b> {{ $user->name }}</b></span>
                                         </div>
                                     @endif
-
+                                    <div>
+                                        <span>Created At :<b> {{ Carbon\Carbon::parse($item->updated_at)->format('d M Y') }}</b></span>
+                                    </div>
                                     <div>
                                         <span class="badge badge-primary">Status</span>
                                     </div>
@@ -292,6 +294,14 @@
                                                                                                             <span
                                                                                                                 class="badge rounded-pill bg-primary">{{ $item->status }}</span>
                                                                                                         </li>
+                                                                                                        <li class="d-flex">
+                                                                                                            <strong>Created At:&nbsp;&nbsp;</strong>
+                                                                                                            <span class="">{{ Carbon\Carbon::parse($item->created_at)->format('d M Y') }}</span>
+                                                                                                        </li>
+                                                                                                        {{-- <li class="d-flex">
+                                                                                                            <strong>Updated At:&nbsp;&nbsp;</strong>
+                                                                                                            <span class="">{{ Carbon\Carbon::parse($item->updated_at)->format('d M Y') }}</span>
+                                                                                                        </li> --}}
                                                                                                     </ul>
                                                                                                 </div>
                                                                                             </div>
