@@ -19,16 +19,38 @@ class PropertyController extends Controller
 
     public function propertyCreate(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif', // Validate each image
+            'user_id' => 'required|exists:users,id'
+        ]);
 
-        $data =  $request->except(['_token']);
-        $user = User::where('id', $data['user_id'])->first();
-        if (Property::insert($data)) {
-            Mail::to($user->email)->send(new PropertyAssigned($user));
+        $images = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                // $imageName = time() . '_' . $image->getClientOriginalName();
+                // $image->storeAs('public/images', $imageName);
+                // $images[] = 'storage/app/public/images/' . $imageName;
+                $images[] = MyHelpers::uploadImage($image, 'uploads/images/properties');
 
-            return redirect()->back()->with('success', 'Property Added Successfully');
-        } else {
+            }
         }
-        return redirect('property')->with('error', 'Failed to add this property, try again.');
+        $property = new Property();
+        $property->title = $request->title;
+        $property->location = $request->location;
+        $property->price = $request->price;
+        $property->description = $request->description;
+        $property->property_link = $request->property_link;
+        $property->status = $request->status;
+        $property->images = json_encode($images); // Serialize the array
+        $property->user_id = $request->user_id;
+        $property->save();
+
+        $user = User::find($request->user_id);
+        Mail::to($user->email)->send(new PropertyAssigned($user));
+
+        return redirect()->back()->with('success', 'Property Added Successfully');
     }
 
     public function propertyRemove(Request $request)

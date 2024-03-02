@@ -26,7 +26,7 @@
         <div class="card-body">
             <h4 class="d-flex align-items-center mb-3">Add Property</h4>
             <br>
-            <form id="" action="{{ route('property-create') }}" method="POST">
+            <form id="" action="{{ route('property-create') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!-- New Sections: Title, Location, Price, Description, Status -->
                 <div class="row mb-3">
@@ -106,6 +106,17 @@
                             @endforeach
                         </select>
                         <small style="color: #e20000" class="error" id="status-error"></small>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Upload Images</h6>
+                        <small style="color: #6f6d6d"  >(You Can Choose Multiples)</small>
+
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <input type="file" name="images[]" id="images" class="form-control" multiple accept=".png">
+                        <small style="color: #e20000" class="error" id="property_link-error"></small>
                     </div>
                 </div>
                 <!-- End of New Sections -->

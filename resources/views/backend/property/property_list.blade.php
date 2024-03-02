@@ -325,7 +325,8 @@
                                                                                                             class="title-box-d section-t4">
                                                                                                             <h4
                                                                                                                 class="title-d">
-                                                                                                                Update Status
+                                                                                                                Update
+                                                                                                                Status
                                                                                                             </h4>
                                                                                                         </div>
                                                                                                     </div>
@@ -385,10 +386,38 @@
 
                                                                                                 </div>
                                                                                             </div>
+
                                                                                         </div>
-                                                                                        {{-- <div
+                                                                                        <div class="col-sm-12">
+                                                                                            <h4
+                                                                                                class="fw-light text-center text-lg-start mt-4 mb-0">
+                                                                                                Property Images</h4>
+                                                                                            <div class="container">
+
+                                                                                                <hr class="mt-2 mb-5">
+                                                                                                <div
+                                                                                                    class="row text-center text-lg-start">
+
+                                                                                                    @if (!empty($item->images))
+                                                                                                        @foreach (json_decode($item->images) as $image)
+                                                                                                            <!-- Page Content -->
+                                                                                                            <div
+                                                                                                                class="col-lg-3 col-md-4 col-6">
+                                                                                                                <a href="{{ url('uploads/images/properties/' . $image) }}"
+                                                                                                                    class="d-block mb-4 h-100">
+                                                                                                                    <img class="img-fluid img-thumbnail"
+                                                                                                                        src="{{ url('uploads/images/properties/' . $image) }}/400x300"
+                                                                                                                        alt="">
+                                                                                                                </a>
+                                                                                                            </div>
+                                                                                                        @endforeach
+                                                                                                </div>
+                                                                                            </div>
+                    @endif
+                </div>
+                {{-- <div
                                                                                             class="col-md-7 col-lg-7 section-md-t3"> --}}
-                                                                                        {{-- <div class="row">
+                {{-- <div class="row">
                                                                                                 <div class="col-sm-12">
                                                                                                     <div
                                                                                                         class="title-box-d">
@@ -400,17 +429,17 @@
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div> --}}
-                                                                                        {{-- <div
+                {{-- <div
                                                                                                 class="property-description description">
                                                                                                 <p
                                                                                                     class="description color-text-a">
                                                                                                     {{ $item->description }}
                                                                                                 </p>
                                                                                             </div> --}}
-                                                                                        {{-- </div> --}}
-                                                                                    </div>
-                                                                                </div>
-                                                                                {{-- <div class="col-sm-12">
+                {{-- </div> --}}
+            </div>
+        </div>
+        {{-- <div class="col-sm-12">
                                                                                     <div class="container mt-3">
                                                                                         <input type="hidden"
                                                                                             value="{{ $item->id }}"
@@ -460,31 +489,30 @@
 
                                                                                     </div>
                                                                                 </div> --}}
-                                                                            </div>
-                                                                </section><!-- End Property Single-->
+    </div>
+    </section><!-- End Property Single-->
 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-
+    </div>
+    </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+        </button>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    @endforeach
+    </div>
 
 
-            </div>
-        </div>
+
+    </div>
+    </div>
     </div>
 @endsection
 @section('plugins')
