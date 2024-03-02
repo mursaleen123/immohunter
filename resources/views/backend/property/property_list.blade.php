@@ -103,8 +103,11 @@
 
                                     </div>
                                     <div class="d-flex justify-content-between">
-                                        <h5 class="card-title">{{ $item->title }}</h5>
-                                    </div>
+                                        <h5 class="card-subtitle mb-2 text-muted text-truncate" title="{{ $item->title }}">
+                                          {{ \Illuminate\Support\Str::limit($item->title, 30) }}
+                                        </h5>
+                                      </div>
+
 
                                     <div>
                                         <h6 class="card-subtitle mb-2 text-muted" title="{{ $item->location }}">
