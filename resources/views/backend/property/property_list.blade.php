@@ -81,396 +81,555 @@
                 <div class="container-fluid" style="overflow-x: auto;">
                     <div class="row flex-nowrap">
                         <div class="col-lg-4 bg-light-info align-items-center justify-content-center">
+                            <h5 class="card-title mt-2">New</h5>
 
+                            @foreach ($data as $item)
+                                <div class="row text-items-center">
+                                    @if ($item->status === 'new')
+                                        <div class="col-lg-11 m-2  align-items-center justify-content-center">
+                                            <div class="card p-2">
+
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p class="card-text">#{{ $item->id }}</p>
+
+                                                        <p
+                                                            class="badge rounded-pill bg-light-{{ $item->status === 'in-contact'
+                                                                ? 'secondary'
+                                                                : ($item->status === 'pending'
+                                                                    ? 'warning'
+                                                                    : ($item->status === 'accepted'
+                                                                        ? 'success'
+                                                                        : ($item->status === 'completed'
+                                                                            ? 'primary'
+                                                                            : ($item->status === 'sold'
+                                                                                ? 'dark'
+                                                                                : 'info')))) }}
+
+                                                                                ($item->status === 'sold' ? 'light' : 'info')
+            )))) }}
+                                                                                text-{{ $item->status === 'in-contact'
+                                                                                    ? 'secondary'
+                                                                                    : ($item->status === 'pending'
+                                                                                        ? 'warning'
+                                                                                        : ($item->status === 'accepted'
+                                                                                            ? 'success'
+                                                                                            : ($item->status === 'completed'
+                                                                                                ? 'primary'
+                                                                                                : ($item->status === 'sold'
+                                                                                                    ? 'light'
+                                                                                                    : 'info')))) }}
+
+
+                                                      ">
+                                                            {{ $item->status }}
+                                                        </p>
+
+
+
+
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <h5 class="card-subtitle mb-2 text-muted text-truncate"
+                                                            title="{{ $item->title }}">
+                                                            {{ \Illuminate\Support\Str::limit($item->title, 30) }}
+                                                        </h5>
+                                                    </div>
+
+
+                                                    <div>
+                                                        <h6 class="card-subtitle mb-2 text-muted"
+                                                            title="{{ $item->location }}">
+                                                            {{ \Illuminate\Support\Str::limit($item->location, 20) }}</h6>
+                                                        <p class="card-text">$ {{ $item->price }}</p>
+                                                    </div>
+                                                    @php
+                                                        $user = DB::table('users')
+                                                            ->where('id', $item->user_id)
+                                                            ->first();
+                                                    @endphp
+                                                    @if ($item->user_id)
+                                                        <div>
+                                                            <span>Employee :<b> {{ $user->name }}</b></span>
+                                                        </div>
+                                                    @endif
+                                                    <div>
+                                                        <span>Created At :<b>
+                                                                {{ Carbon\Carbon::parse($item->updated_at)->format('d M Y') }}</b></span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="badge badge-primary">Status</span>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                            @endforeach
                         </div>
+                        <div class="col-lg-4 bg-light-warning align-items-center justify-content-center">
+                            <h5 class="card-title mt-2">In Contact</h5>
 
-                        <div class="col-lg-4 bg-light-danger">a</div>
-                        <div class="col-lg-4 bg-light-warning">a</div>
-                        <div class="col-lg-4 bg-light-success">a</div>
-                        <div class="col-lg-4 bg-light-danger">a</div>
-                        <div class="col-lg-4 bg-light-info">a</div>
+                            @foreach ($data as $item)
+                                <div class="row text-items-center">
+                                    @if ($item->status === 'in-contact')
+                                        <div class="col-lg-11 m-2  align-items-center justify-content-center">
+                                            <div class="card p-2">
+
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p class="card-text">#{{ $item->id }}</p>
+
+                                                        <p
+                                                            class="badge rounded-pill bg-light-{{ $item->status === 'in-contact'
+                                                                ? 'secondary'
+                                                                : ($item->status === 'pending'
+                                                                    ? 'warning'
+                                                                    : ($item->status === 'accepted'
+                                                                        ? 'success'
+                                                                        : ($item->status === 'completed'
+                                                                            ? 'primary'
+                                                                            : ($item->status === 'sold'
+                                                                                ? 'dark'
+                                                                                : 'info')))) }}
+
+                                                                                ($item->status === 'sold' ? 'light' : 'info')
+            )))) }}
+                                                                                text-{{ $item->status === 'in-contact'
+                                                                                    ? 'secondary'
+                                                                                    : ($item->status === 'pending'
+                                                                                        ? 'warning'
+                                                                                        : ($item->status === 'accepted'
+                                                                                            ? 'success'
+                                                                                            : ($item->status === 'completed'
+                                                                                                ? 'primary'
+                                                                                                : ($item->status === 'sold'
+                                                                                                    ? 'light'
+                                                                                                    : 'info')))) }}
+
+
+                                                      ">
+                                                            {{ $item->status }}
+                                                        </p>
+
+
+
+
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <h5 class="card-subtitle mb-2 text-muted text-truncate"
+                                                            title="{{ $item->title }}">
+                                                            {{ \Illuminate\Support\Str::limit($item->title, 30) }}
+                                                        </h5>
+                                                    </div>
+
+
+                                                    <div>
+                                                        <h6 class="card-subtitle mb-2 text-muted"
+                                                            title="{{ $item->location }}">
+                                                            {{ \Illuminate\Support\Str::limit($item->location, 20) }}</h6>
+                                                        <p class="card-text">$ {{ $item->price }}</p>
+                                                    </div>
+                                                    @php
+                                                        $user = DB::table('users')
+                                                            ->where('id', $item->user_id)
+                                                            ->first();
+                                                    @endphp
+                                                    @if ($item->user_id)
+                                                        <div>
+                                                            <span>Employee :<b> {{ $user->name }}</b></span>
+                                                        </div>
+                                                    @endif
+                                                    <div>
+                                                        <span>Created At :<b>
+                                                                {{ Carbon\Carbon::parse($item->updated_at)->format('d M Y') }}</b></span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="badge badge-primary">Status</span>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="col-lg-4 bg-light-danger align-items-center justify-content-center">
+                            <h5 class="card-title mt-2">Pending </h5>
+
+                            @foreach ($data as $item)
+                                <div class="row text-items-center">
+                                    @if ($item->status === 'pending')
+                                        <div class="col-lg-11 m-2  align-items-center justify-content-center">
+                                            <div class="card p-2">
+
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p class="card-text">#{{ $item->id }}</p>
+
+                                                        <p
+                                                            class="badge rounded-pill bg-light-{{ $item->status === 'in-contact'
+                                                                ? 'secondary'
+                                                                : ($item->status === 'pending'
+                                                                    ? 'warning'
+                                                                    : ($item->status === 'accepted'
+                                                                        ? 'success'
+                                                                        : ($item->status === 'completed'
+                                                                            ? 'primary'
+                                                                            : ($item->status === 'sold'
+                                                                                ? 'dark'
+                                                                                : 'info')))) }}
+
+                                                                                ($item->status === 'sold' ? 'light' : 'info')
+            )))) }}
+                                                                                text-{{ $item->status === 'in-contact'
+                                                                                    ? 'secondary'
+                                                                                    : ($item->status === 'pending'
+                                                                                        ? 'warning'
+                                                                                        : ($item->status === 'accepted'
+                                                                                            ? 'success'
+                                                                                            : ($item->status === 'completed'
+                                                                                                ? 'primary'
+                                                                                                : ($item->status === 'sold'
+                                                                                                    ? 'light'
+                                                                                                    : 'info')))) }}
+
+
+                                                      ">
+                                                            {{ $item->status }}
+                                                        </p>
+
+
+
+
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <h5 class="card-subtitle mb-2 text-muted text-truncate"
+                                                            title="{{ $item->title }}">
+                                                            {{ \Illuminate\Support\Str::limit($item->title, 30) }}
+                                                        </h5>
+                                                    </div>
+
+
+                                                    <div>
+                                                        <h6 class="card-subtitle mb-2 text-muted"
+                                                            title="{{ $item->location }}">
+                                                            {{ \Illuminate\Support\Str::limit($item->location, 20) }}</h6>
+                                                        <p class="card-text">$ {{ $item->price }}</p>
+                                                    </div>
+                                                    @php
+                                                        $user = DB::table('users')
+                                                            ->where('id', $item->user_id)
+                                                            ->first();
+                                                    @endphp
+                                                    @if ($item->user_id)
+                                                        <div>
+                                                            <span>Employee :<b> {{ $user->name }}</b></span>
+                                                        </div>
+                                                    @endif
+                                                    <div>
+                                                        <span>Created At :<b>
+                                                                {{ Carbon\Carbon::parse($item->updated_at)->format('d M Y') }}</b></span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="badge badge-primary">Status</span>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="col-lg-4  align-items-center justify-content-center bg-light-success">
+                            <h5 class="card-title mt-2">Accepted </h5>
+
+                            @foreach ($data as $item)
+                                <div class="row text-items-center">
+                                    @if ($item->status === 'accepted')
+                                        <div class="col-lg-11 m-2  align-items-center justify-content-center">
+                                            <div class="card p-2">
+
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p class="card-text">#{{ $item->id }}</p>
+
+                                                        <p
+                                                            class="badge rounded-pill bg-light-{{ $item->status === 'in-contact'
+                                                                ? 'secondary'
+                                                                : ($item->status === 'pending'
+                                                                    ? 'warning'
+                                                                    : ($item->status === 'accepted'
+                                                                        ? 'success'
+                                                                        : ($item->status === 'completed'
+                                                                            ? 'primary'
+                                                                            : ($item->status === 'sold'
+                                                                                ? 'dark'
+                                                                                : 'info')))) }}
+
+                                                                                ($item->status === 'sold' ? 'light' : 'info')
+            )))) }}
+                                                                                text-{{ $item->status === 'in-contact'
+                                                                                    ? 'secondary'
+                                                                                    : ($item->status === 'pending'
+                                                                                        ? 'warning'
+                                                                                        : ($item->status === 'accepted'
+                                                                                            ? 'success'
+                                                                                            : ($item->status === 'completed'
+                                                                                                ? 'primary'
+                                                                                                : ($item->status === 'sold'
+                                                                                                    ? 'light'
+                                                                                                    : 'info')))) }}
+
+
+                                                      ">
+                                                            {{ $item->status }}
+                                                        </p>
+
+
+
+
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <h5 class="card-subtitle mb-2 text-muted text-truncate"
+                                                            title="{{ $item->title }}">
+                                                            {{ \Illuminate\Support\Str::limit($item->title, 30) }}
+                                                        </h5>
+                                                    </div>
+
+
+                                                    <div>
+                                                        <h6 class="card-subtitle mb-2 text-muted"
+                                                            title="{{ $item->location }}">
+                                                            {{ \Illuminate\Support\Str::limit($item->location, 20) }}</h6>
+                                                        <p class="card-text">$ {{ $item->price }}</p>
+                                                    </div>
+                                                    @php
+                                                        $user = DB::table('users')
+                                                            ->where('id', $item->user_id)
+                                                            ->first();
+                                                    @endphp
+                                                    @if ($item->user_id)
+                                                        <div>
+                                                            <span>Employee :<b> {{ $user->name }}</b></span>
+                                                        </div>
+                                                    @endif
+                                                    <div>
+                                                        <span>Created At :<b>
+                                                                {{ Carbon\Carbon::parse($item->updated_at)->format('d M Y') }}</b></span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="badge badge-primary">Status</span>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="col-lg-4  align-items-center justify-content-center bg-light-info">
+                            <h5 class="card-title mt-2">Completed </h5>
+
+                            @foreach ($data as $item)
+                                <div class="row text-items-center">
+                                    @if ($item->status === 'completed')
+                                        <div class="col-lg-11 m-2  align-items-center justify-content-center">
+                                            <div class="card p-2">
+
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p class="card-text">#{{ $item->id }}</p>
+
+                                                        <p
+                                                            class="badge rounded-pill bg-light-{{ $item->status === 'in-contact'
+                                                                ? 'secondary'
+                                                                : ($item->status === 'pending'
+                                                                    ? 'warning'
+                                                                    : ($item->status === 'accepted'
+                                                                        ? 'success'
+                                                                        : ($item->status === 'completed'
+                                                                            ? 'primary'
+                                                                            : ($item->status === 'sold'
+                                                                                ? 'dark'
+                                                                                : 'info')))) }}
+
+                                                                                ($item->status === 'sold' ? 'light' : 'info')
+            )))) }}
+                                                                                text-{{ $item->status === 'in-contact'
+                                                                                    ? 'secondary'
+                                                                                    : ($item->status === 'pending'
+                                                                                        ? 'warning'
+                                                                                        : ($item->status === 'accepted'
+                                                                                            ? 'success'
+                                                                                            : ($item->status === 'completed'
+                                                                                                ? 'primary'
+                                                                                                : ($item->status === 'sold'
+                                                                                                    ? 'light'
+                                                                                                    : 'info')))) }}
+
+
+                                                      ">
+                                                            {{ $item->status }}
+                                                        </p>
+
+
+
+
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <h5 class="card-subtitle mb-2 text-muted text-truncate"
+                                                            title="{{ $item->title }}">
+                                                            {{ \Illuminate\Support\Str::limit($item->title, 30) }}
+                                                        </h5>
+                                                    </div>
+
+
+                                                    <div>
+                                                        <h6 class="card-subtitle mb-2 text-muted"
+                                                            title="{{ $item->location }}">
+                                                            {{ \Illuminate\Support\Str::limit($item->location, 20) }}</h6>
+                                                        <p class="card-text">$ {{ $item->price }}</p>
+                                                    </div>
+                                                    @php
+                                                        $user = DB::table('users')
+                                                            ->where('id', $item->user_id)
+                                                            ->first();
+                                                    @endphp
+                                                    @if ($item->user_id)
+                                                        <div>
+                                                            <span>Employee :<b> {{ $user->name }}</b></span>
+                                                        </div>
+                                                    @endif
+                                                    <div>
+                                                        <span>Created At :<b>
+                                                                {{ Carbon\Carbon::parse($item->updated_at)->format('d M Y') }}</b></span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="badge badge-primary">Status</span>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="col-lg-4  align-items-center justify-content-center bg-light-warning">
+                            <h5 class="card-title mt-2">Sold </h5>
+
+                            @foreach ($data as $item)
+                                <div class="row text-items-center">
+                                    @if ($item->status === 'sold')
+                                        <div class="col-lg-11 m-2  align-items-center justify-content-center">
+                                            <div class="card p-2">
+
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p class="card-text">#{{ $item->id }}</p>
+
+                                                        <p
+                                                            class="badge rounded-pill bg-light-{{ $item->status === 'in-contact'
+                                                                ? 'secondary'
+                                                                : ($item->status === 'pending'
+                                                                    ? 'warning'
+                                                                    : ($item->status === 'accepted'
+                                                                        ? 'success'
+                                                                        : ($item->status === 'completed'
+                                                                            ? 'primary'
+                                                                            : ($item->status === 'sold'
+                                                                                ? 'dark'
+                                                                                : 'info')))) }}
+
+                                                                                ($item->status === 'sold' ? 'light' : 'info')
+            )))) }}
+                                                                                text-{{ $item->status === 'in-contact'
+                                                                                    ? 'secondary'
+                                                                                    : ($item->status === 'pending'
+                                                                                        ? 'warning'
+                                                                                        : ($item->status === 'accepted'
+                                                                                            ? 'success'
+                                                                                            : ($item->status === 'completed'
+                                                                                                ? 'primary'
+                                                                                                : ($item->status === 'sold'
+                                                                                                    ? 'light'
+                                                                                                    : 'info')))) }}
+
+
+                                                      ">
+                                                            {{ $item->status }}
+                                                        </p>
+
+
+
+
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <h5 class="card-subtitle mb-2 text-muted text-truncate"
+                                                            title="{{ $item->title }}">
+                                                            {{ \Illuminate\Support\Str::limit($item->title, 30) }}
+                                                        </h5>
+                                                    </div>
+
+
+                                                    <div>
+                                                        <h6 class="card-subtitle mb-2 text-muted"
+                                                            title="{{ $item->location }}">
+                                                            {{ \Illuminate\Support\Str::limit($item->location, 20) }}</h6>
+                                                        <p class="card-text">$ {{ $item->price }}</p>
+                                                    </div>
+                                                    @php
+                                                        $user = DB::table('users')
+                                                            ->where('id', $item->user_id)
+                                                            ->first();
+                                                    @endphp
+                                                    @if ($item->user_id)
+                                                        <div>
+                                                            <span>Employee :<b> {{ $user->name }}</b></span>
+                                                        </div>
+                                                    @endif
+                                                    <div>
+                                                        <span>Created At :<b>
+                                                                {{ Carbon\Carbon::parse($item->updated_at)->format('d M Y') }}</b></span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="badge badge-primary">Status</span>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
+
                 </div>
 
                 <div class="row">
                     @foreach ($data as $item)
                         <div class="col-lg-4 col-md-5 col-sm-6 mb-4">
-                            <div class="card p-2">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between">
-                                        <p class="card-text">#{{ $item->id }}</p>
 
-                                        <p
-                                            class="badge rounded-pill bg-light-{{ $item->status === 'in-contact'
-                                                ? 'secondary'
-                                                : ($item->status === 'pending'
-                                                    ? 'warning'
-                                                    : ($item->status === 'accepted'
-                                                        ? 'success'
-                                                        : ($item->status === 'completed'
-                                                            ? 'primary'
-                                                            : ($item->status === 'sold'
-                                                                ? 'dark'
-                                                                : 'info')))) }}
-
-                                                                    ($item->status === 'sold' ? 'light' : 'info')
-)))) }}
-                                                                    text-{{ $item->status === 'in-contact'
-                                                                        ? 'secondary'
-                                                                        : ($item->status === 'pending'
-                                                                            ? 'warning'
-                                                                            : ($item->status === 'accepted'
-                                                                                ? 'success'
-                                                                                : ($item->status === 'completed'
-                                                                                    ? 'primary'
-                                                                                    : ($item->status === 'sold'
-                                                                                        ? 'light'
-                                                                                        : 'info')))) }}
-
-
-                                          ">
-                                            {{ $item->status }}
-                                        </p>
-
-
-
-
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <h5 class="card-subtitle mb-2 text-muted text-truncate"
-                                            title="{{ $item->title }}">
-                                            {{ \Illuminate\Support\Str::limit($item->title, 30) }}
-                                        </h5>
-                                    </div>
-
-
-                                    <div>
-                                        <h6 class="card-subtitle mb-2 text-muted" title="{{ $item->location }}">
-                                            {{ \Illuminate\Support\Str::limit($item->location, 20) }}</h6>
-                                        <p class="card-text">$ {{ $item->price }}</p>
-                                    </div>
-                                    @php
-                                        $user = DB::table('users')
-                                            ->where('id', $item->user_id)
-                                            ->first();
-                                    @endphp
-                                    @if ($item->user_id)
-                                        <div>
-                                            <span>Assigned Employee :<b> {{ $user->name }}</b></span>
-                                        </div>
-                                    @endif
-                                    <div>
-                                        <span>Created At :<b>
-                                                {{ Carbon\Carbon::parse($item->updated_at)->format('d M Y') }}</b></span>
-                                    </div>
-                                    <div>
-                                        <span class="badge badge-primary">Status</span>
-                                    </div>
-
-                                    <div class="d-flex justify-content-between">
-                                        <a href="#" class="card-link" title="{{ $item->property_link }}">
-                                            Visit Site</a>
-                                        <a href="" class="btn btn-sm btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#exampleFullScreenModal-{{ $item->id }}">Details</a>
-
-                                        <div class="modal fade" id="exampleFullScreenModal-{{ $item->id }}"
-                                            tabindex="-1" aria-hidden="true" style="display: none;">
-                                            <div class="modal-dialog modal-fullscreen">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">View Property</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <!-- ======= Intro Single ======= -->
-                                                                <section class="intro-single">
-                                                                    <div class="container-fluid">
-                                                                        <div class="row">
-                                                                            <div class="col-md-12 col-lg-12">
-                                                                                <nav aria-label="breadcrumb"
-                                                                                    class="breadcrumb-box d-flex justify-content-lg-end">
-                                                                                    <ol class="breadcrumb">
-                                                                                        <li class="breadcrumb-item">
-                                                                                            <p>Property ID :</p>
-                                                                                        </li>
-                                                                                        <li class="breadcrumb-item active"
-                                                                                            aria-current="page">
-                                                                                            <b>{{ $item->id }}</b>
-                                                                                        </li>
-                                                                                    </ol>
-                                                                                </nav>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-lg-8">
-                                                                                <div class="title-single-box">
-                                                                                    <h3 class="title-single">
-                                                                                        {{ $item->title }}</h3>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-4">
-                                                                                <div
-                                                                                    class="title-single-box justify-content-end">
-                                                                                    <h5 class="title-single text-end">
-                                                                                        ${{ $item->price }}
-                                                                                    </h5>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-
-                                                                </section>
-                                                                <!-- End Intro Single-->
-
-                                                                <!-- ======= Property Single ======= -->
-                                                                <section class="property-single nav-arrow-b">
-                                                                    <div class="container">
-                                                                        <div class="row justify-content-center">
-
-                                                                            <div class="row">
-                                                                                <div class="col-sm-12">
-
-                                                                                    <div
-                                                                                        class="row justify-content-between">
-                                                                                        <div class="col-md-5 col-lg-4">
-                                                                                            <div class="property-summary">
-                                                                                                <div class="row">
-                                                                                                    <div class="col-sm-12">
-                                                                                                        <div
-                                                                                                            class="title-box-d section-t4">
-                                                                                                            <h4
-                                                                                                                class="title-d">
-                                                                                                                Quick
-                                                                                                                Summary
-                                                                                                            </h4>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="summary-list">
-                                                                                                    <ul class="list">
-                                                                                                        <li class="d-flex">
-                                                                                                            <strong>Property
-                                                                                                                Link:&nbsp;&nbsp;</strong>
-                                                                                                            <span>
-                                                                                                                <a
-                                                                                                                    href="  {{ $item->property_link }}">click
-                                                                                                                    here</a></span>
-                                                                                                        </li>
-                                                                                                        @if ($item->user_id)
-                                                                                                            <li
-                                                                                                                class="d-flex">
-                                                                                                                <strong>Assigned
-                                                                                                                    Employe:&nbsp;&nbsp;</strong>
-                                                                                                                @if ($item->user_id)
-                                                                                                                    <span>{{ $user->name }}</span>
-                                                                                                                @endif
-                                                                                                            </li>
-                                                                                                        @else
-                                                                                                            <li
-                                                                                                                class="d-flex justify-content-between">
-                                                                                                                <strong>Assign
-                                                                                                                    Employe:</strong>
-                                                                                                                <span>
-                                                                                                                    <input
-                                                                                                                        type="hidden"
-                                                                                                                        name="property_id"
-                                                                                                                        id="property_id"
-                                                                                                                        readonly
-                                                                                                                        value="{{ $item->id }}">
-                                                                                                                    <select
-                                                                                                                        name="user_id"
-                                                                                                                        id="assign_employee"
-                                                                                                                        class="form-control"
-                                                                                                                        required>
-                                                                                                                        <option
-                                                                                                                            value="">
-                                                                                                                            Assign
-                                                                                                                            Employee
-                                                                                                                        </option>
-                                                                                                                        @foreach ($users as $employee)
-                                                                                                                            <option
-                                                                                                                                value="{{ $employee->id }}">
-                                                                                                                                {{ $employee->name }}
-                                                                                                                            </option>
-                                                                                                                        @endforeach
-                                                                                                                    </select>
-                                                                                                                </span>
-
-                                                                                                            </li>
-                                                                                                        @endif
-                                                                                                        <li class="d-flex">
-                                                                                                            <strong>Property
-                                                                                                                Status:&nbsp;&nbsp;</strong>
-                                                                                                            <span
-                                                                                                                class="badge rounded-pill bg-primary">{{ $item->status }}</span>
-                                                                                                        </li>
-                                                                                                        <li class="d-flex">
-                                                                                                            <strong>Created
-                                                                                                                At:&nbsp;&nbsp;</strong>
-                                                                                                            <span
-                                                                                                                class="">{{ Carbon\Carbon::parse($item->created_at)->format('d M Y') }}</span>
-                                                                                                        </li>
-                                                                                                        {{-- <li class="d-flex">
-                                                                                                            <strong>Updated At:&nbsp;&nbsp;</strong>
-                                                                                                            <span class="">{{ Carbon\Carbon::parse($item->updated_at)->format('d M Y') }}</span>
-                                                                                                        </li> --}}
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-md-5 col-lg-8">
-                                                                                            <div class="property-summary">
-                                                                                                <div class="row">
-                                                                                                    <div class="col-sm-12">
-                                                                                                        <div
-                                                                                                            class="title-box-d section-t4">
-                                                                                                            <h4
-                                                                                                                class="title-d">
-                                                                                                                Property
-                                                                                                                Description
-                                                                                                            </h4>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="summary-list">
-                                                                                                    <p
-                                                                                                        class="title-single color-text-a">
-                                                                                                        {{ $item->description }}
-                                                                                                    </p>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <hr>
-                                                                                            <div class="col-sm-12">
-                                                                                                <div class="row">
-                                                                                                    <div class="col-sm-12">
-                                                                                                        <div
-                                                                                                            class="title-box-d section-t4">
-                                                                                                            <h4
-                                                                                                                class="title-d">
-                                                                                                                Update
-                                                                                                                Status
-                                                                                                            </h4>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div
-                                                                                                    class="container mt-3">
-                                                                                                    <input type="hidden"
-                                                                                                        value="{{ $item->id }}"
-                                                                                                        id="property_id_value">
-                                                                                                    <button type="button"
-                                                                                                        class="btn {{ $item->status === 'new' ? 'btn-success' : 'btn-light' }} toggle-btn">New</button>
-                                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                                        width="24"
-                                                                                                        height="24">
-                                                                                                        <path
-                                                                                                            d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
-                                                                                                            fill="#ccc" />
-                                                                                                    </svg>
-                                                                                                    <button type="button"
-                                                                                                        class="btn {{ $item->status === 'in-contact' ? 'btn-success' : 'btn-light' }} toggle-btn">In-Contact</button>
-                                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                                        width="24"
-                                                                                                        height="24">
-                                                                                                        <path
-                                                                                                            d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
-                                                                                                            fill="#ccc" />
-                                                                                                    </svg>
-                                                                                                    <button type="button"
-                                                                                                        class="btn {{ $item->status === 'pending' ? 'btn-success' : 'btn-light' }} toggle-btn">Pending</button>
-                                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                                        width="24"
-                                                                                                        height="24">
-                                                                                                        <path
-                                                                                                            d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
-                                                                                                            fill="#ccc" />
-                                                                                                    </svg>
-                                                                                                    <button type="button"
-                                                                                                        class="btn {{ $item->status === 'accepted' ? 'btn-success' : 'btn-light' }} toggle-btn">Accepted</button>
-                                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                                        width="24"
-                                                                                                        height="24">
-                                                                                                        <path
-                                                                                                            d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
-                                                                                                            fill="#ccc" />
-                                                                                                    </svg>
-                                                                                                    <button type="button"
-                                                                                                        class="btn {{ $item->status === 'sold' ? 'btn-success' : 'btn-light' }} toggle-btn">Sold</button>
-
-                                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                                        width="24"
-                                                                                                        height="24">
-                                                                                                        <path
-                                                                                                            d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
-                                                                                                            fill="#ccc" />
-                                                                                                    </svg>
-                                                                                                    <button type="button"
-                                                                                                        class="btn {{ $item->status === 'completed' ? 'btn-success' : 'btn-light' }} toggle-btn">Completed</button>
-
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                        </div>
-                                                                                        <div class="col-sm-12">
-                                                                                            <h4
-                                                                                                class="fw-light text-center text-lg-start mt-4 mb-0">
-                                                                                                Property Images</h4>
-                                                                                            <div class="container">
-
-                                                                                                <hr class="mt-2 mb-5">
-                                                                                                <div
-                                                                                                    class="row text-center text-lg-start">
-
-                                                                                                    @if (!empty($item->images))
-                                                                                                        @foreach (json_decode($item->images) as $image)
-                                                                                                            <!-- Page Content -->
-                                                                                                            <div
-                                                                                                                class="col-lg-3 col-md-4 col-6">
-                                                                                                                <a href="{{ url('uploads/images/properties/' . $image) }}"
-                                                                                                                    class="d-block mb-4 h-100">
-                                                                                                                    <img class="img-fluid img-thumbnail"
-                                                                                                                        src="{{ url('uploads/images/properties/' . $image) }}"
-                                                                                                                        alt="">
-                                                                                                                </a>
-                                                                                                            </div>
-                                                                                                        @endforeach
-                                                                                                </div>
-                                                                                            </div>
-                    @endif
+                        </div>
+                    @endforeach
                 </div>
 
-                {{-- </div> --}}
+
+
             </div>
         </div>
-
-    </div>
-    </section><!-- End Property Single-->
-
-    </div>
-    </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
-        </button>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    @endforeach
-    </div>
-
-
-
-    </div>
-    </div>
     </div>
 @endsection
 @section('plugins')
