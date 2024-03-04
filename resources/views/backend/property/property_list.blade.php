@@ -147,7 +147,8 @@
                                         </div>
                                     @endif
                                     <div>
-                                        <span>Created At :<b> {{ Carbon\Carbon::parse($item->updated_at)->format('d M Y') }}</b></span>
+                                        <span>Created At :<b>
+                                                {{ Carbon\Carbon::parse($item->updated_at)->format('d M Y') }}</b></span>
                                     </div>
                                     <div>
                                         <span class="badge badge-primary">Status</span>
@@ -295,8 +296,10 @@
                                                                                                                 class="badge rounded-pill bg-primary">{{ $item->status }}</span>
                                                                                                         </li>
                                                                                                         <li class="d-flex">
-                                                                                                            <strong>Created At:&nbsp;&nbsp;</strong>
-                                                                                                            <span class="">{{ Carbon\Carbon::parse($item->created_at)->format('d M Y') }}</span>
+                                                                                                            <strong>Created
+                                                                                                                At:&nbsp;&nbsp;</strong>
+                                                                                                            <span
+                                                                                                                class="">{{ Carbon\Carbon::parse($item->created_at)->format('d M Y') }}</span>
                                                                                                         </li>
                                                                                                         {{-- <li class="d-flex">
                                                                                                             <strong>Updated At:&nbsp;&nbsp;</strong>
@@ -383,7 +386,8 @@
                                                                                                             fill="#ccc" />
                                                                                                     </svg>
                                                                                                     <button type="button"
-                                                                                                        class="btn {{ $item->status === 'completed' ? 'btn-success' : 'btn-light' }} toggle-btn">Completed</button>
+                                                                                                        class="btn {{ $item->status === 'sold' ? 'btn-success' : 'btn-light' }} toggle-btn">Sold</button>
+
                                                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                                                         width="24"
                                                                                                         height="24">
@@ -392,7 +396,7 @@
                                                                                                             fill="#ccc" />
                                                                                                     </svg>
                                                                                                     <button type="button"
-                                                                                                        class="btn {{ $item->status === 'sold' ? 'btn-success' : 'btn-light' }} toggle-btn">Sold</button>
+                                                                                                        class="btn {{ $item->status === 'completed' ? 'btn-success' : 'btn-light' }} toggle-btn">Completed</button>
 
                                                                                                 </div>
                                                                                             </div>
