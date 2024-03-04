@@ -68,6 +68,7 @@
                                                     <input name="password" autocomplete="current-password"
                                                         type="password" class="form-control border-end-0"
                                                         id="inputChoosePassword" placeholder="Enter Password" required>
+                                                    <input name="email" value="{{$email}}" readonly>
                                                     <a href="javascript:;" class="input-group-text bg-transparent"><i
                                                             class='bx bx-hide'></i></a>
                                                 </div>
