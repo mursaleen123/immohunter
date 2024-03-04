@@ -78,6 +78,19 @@
                 </div>
 
 
+                <div class="container-fluid" style="overflow-x: auto;">
+                    <div class="row flex-nowrap">
+                        <div class="col-lg-4 bg-light-info align-items-center justify-content-center">
+
+                        </div>
+
+                        <div class="col-lg-4 bg-light-danger">a</div>
+                        <div class="col-lg-4 bg-light-warning">a</div>
+                        <div class="col-lg-4 bg-light-success">a</div>
+                        <div class="col-lg-4 bg-light-danger">a</div>
+                        <div class="col-lg-4 bg-light-info">a</div>
+                    </div>
+                </div>
 
                 <div class="row">
                     @foreach ($data as $item)
@@ -429,80 +442,11 @@
                                                                                             </div>
                     @endif
                 </div>
-                {{-- <div
-                                                                                            class="col-md-7 col-lg-7 section-md-t3"> --}}
-                {{-- <div class="row">
-                                                                                                <div class="col-sm-12">
-                                                                                                    <div
-                                                                                                        class="title-box-d">
-                                                                                                        <h3
-                                                                                                            class="title-d">
-                                                                                                            Property
-                                                                                                            Description
-                                                                                                        </h3>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div> --}}
-                {{-- <div
-                                                                                                class="property-description description">
-                                                                                                <p
-                                                                                                    class="description color-text-a">
-                                                                                                    {{ $item->description }}
-                                                                                                </p>
-                                                                                            </div> --}}
+
                 {{-- </div> --}}
             </div>
         </div>
-        {{-- <div class="col-sm-12">
-                                                                                    <div class="container mt-3">
-                                                                                        <input type="hidden"
-                                                                                            value="{{ $item->id }}"
-                                                                                            id="property_id_value">
-                                                                                        <button type="button"
-                                                                                            class="btn {{ $item->status === 'new' ? 'btn-success' : 'btn-light' }} toggle-btn">New</button>
-                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                            width="24" height="24">
-                                                                                            <path
-                                                                                                d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
-                                                                                                fill="#ccc" />
-                                                                                        </svg>
-                                                                                        <button type="button"
-                                                                                            class="btn {{ $item->status === 'in-contact' ? 'btn-success' : 'btn-light' }} toggle-btn">In-Contact</button>
-                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                            width="24" height="24">
-                                                                                            <path
-                                                                                                d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
-                                                                                                fill="#ccc" />
-                                                                                        </svg>
-                                                                                        <button type="button"
-                                                                                            class="btn {{ $item->status === 'pending' ? 'btn-success' : 'btn-light' }} toggle-btn">Pending</button>
-                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                            width="24" height="24">
-                                                                                            <path
-                                                                                                d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
-                                                                                                fill="#ccc" />
-                                                                                        </svg>
-                                                                                        <button type="button"
-                                                                                            class="btn {{ $item->status === 'accepted' ? 'btn-success' : 'btn-light' }} toggle-btn">Accepted</button>
-                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                            width="24" height="24">
-                                                                                            <path
-                                                                                                d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
-                                                                                                fill="#ccc" />
-                                                                                        </svg>
-                                                                                        <button type="button"
-                                                                                            class="btn {{ $item->status === 'completed' ? 'btn-success' : 'btn-light' }} toggle-btn">Completed</button>
-                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                            width="24" height="24">
-                                                                                            <path
-                                                                                                d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"
-                                                                                                fill="#ccc" />
-                                                                                        </svg>
-                                                                                        <button type="button"
-                                                                                            class="btn {{ $item->status === 'sold' ? 'btn-success' : 'btn-light' }} toggle-btn">Sold</button>
 
-                                                                                    </div>
-                                                                                </div> --}}
     </div>
     </section><!-- End Property Single-->
 
