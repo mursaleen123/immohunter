@@ -88,7 +88,7 @@
                                                                 style="font-weight:
                                                          lighter">{{ $item->address ?:
                                                              'No address
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ' }}</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ' }}</span>
                                                         </h5>
                                                         <h5 class="card-title">Phone Number : <span
                                                                 style="font-weight:
@@ -139,22 +139,17 @@
                                     </form>
                                 </td>
                                 <td>
-
                                     @if ($item->password)
                                         Activated
                                     @else
-                                        <form method="POST" action="{{ route('resend-vendor-email') }}"
-                                            class="resend-email-form">
+                                        <form class="resend-email-form" data-id="{{ $item->id }}">
                                             @csrf
-                                            <input name="vendor_id" value="{{ $item->id }}" hidden />
-                                            <div class="form-check form-switch">
-                                                <input name="activate"
-                                                    class="btn
-                                        btn-outline-success"
-                                                    type="submit" value=" Resend">
-                                            </div>
+                                            <button class="btn btn-outline-success resend-btn"
+                                                type="button">Resend</button>
+                                        </form>
                                     @endif
                                 </td>
+
 
                                 <td>
                                     <div class="d-flex order-actions">
@@ -222,6 +217,7 @@
         $(document).ready(function() {
             $('form.active-deactive-form').click('submit', function(event) {
                 event.preventDefault();
+
                 $.ajax({
                     url: "{{ route('admin-activate-vendor') }}",
                     method: 'POST',
@@ -243,6 +239,31 @@
                     },
                     error: function(response) {
 
+                    }
+                });
+            });
+            $('.resend-btn').click(function() {
+                var userId = $(this).closest('form').data('id');
+
+                $.ajax({
+                    url: "{{ route('resend-vendor-email') }}",
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        user_id: userId
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Send Successfully',
+                            showDenyButton: false,
+                            showCancelButton: false,
+                            confirmButtonText: 'OK'
+                        })
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
                     }
                 });
             });

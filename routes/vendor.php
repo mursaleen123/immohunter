@@ -34,8 +34,7 @@ Route::middleware(['auth', 'auth.role:vendor'])
 
 
 Route::post('resend/set_password', function (Request $request) {
-    $user = User::where('id', $request->vendor_id)->first();
-
+    $user = User::where('id', $request->user_id)->first();
     // Send email to the vendor
     Mail::to($user->email)->send(new SetPasswordEmail($user->email));
 
